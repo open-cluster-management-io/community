@@ -3,6 +3,8 @@
 
 Welcome! The open-cluster-management.io project is focused on enabling end to end visiblity and control across your Kubernetes clusters.
 
+Please read the [MISSION.md](MISSION.md) statement for more information.
+
 ![image](assets/acm-arch.jpg)
 
 There are a number of key use cases that are enabled by this project.
