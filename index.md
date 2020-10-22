@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+# Multicluster architecture
 
-You can use the [editor on GitHub](https://github.com/open-cluster-management/community/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Open Cluster Management consists of several multicluster components, which are used to access and manage your clusters. Learn more about the architecture in the following sections, then follow the links to more detailed documentation.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The Open Cluster Management project was started to bring together the various aspects of managing Kubernetes clusters into an integrated solution comprised of loosely coupled building blocks. Here are some example Multicluster APIs that are part of the project today:
 
-### Markdown
+- Define API for cluster registration independent of cluster CRUD lifecycle.
+- Define API for work distribution across multiple clusters.
+- Define API for dynamic placement of content and behavior across multiple clusters.
+- Define API for policy definition to ensure desired configuration and security settings are auditable or enforceable.
+- Define API for distributed application delivery across many clusters and the ability to deliver ongoing updates.
+- Define API to collect cluster and application health metrics and alerts across multiple clusters.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+Learn more about the following components
 
-# Header 1
-## Header 2
-### Header 3
+* Hub cluster
+* Managed cluster
+* Cluster lifecycle
+* Application lifecycle
+* Governance and risk
 
-- Bulleted
-- List
+## Hub cluster
 
-1. Numbered
-2. List
+The _hub_ cluster is the common term that is used to define the central controller that runs in a {product-title} cluster.
+From the hub cluster, you can access the console and product components, as well as APIs such as the `rcm-api`, which handles API requests related to cluster lifecycle management, which is defined later in this topic.
 
-**Bold** and _Italic_ and `Code` text
+The hub cluster aggregates information from multiple clusters by using an asynchronous work request model.
+With a graph database, the hub cluster maintains the state of clusters and applications that run on it.
+The hub cluster also uses `etcd`, a distributed key value store, to store the state of work requests and results from multiple clusters, and provides a set of REST APIs for the various functions that it supports.
 
-[Link](url) and ![Image](src)
-```
+## Managed cluster
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+The managed cluster is the term that is used to define additional clusters with the Klusterlet, which is the agent that initiates a connection to the {product-title} hub cluster.
+The managed cluster receives and applies requests, then returns the results.
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/open-cluster-management/community/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Cluster lifecycle
 
-### Support or Contact
+_cluster lifecycle_ defines the process of creating, importing, and managing clusters across public and private clouds.
+From the hub cluster console, you can view an aggregation of all cluster health statuses, or view individual health metrics.
+You can upgrade managed Red Hat Openshift clusters individually or in bulk, as well as destroy any Red Hat Openshift clusters that you created from your hub cluster.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Application lifecycle
+
+_application lifecycle_ defines the processes that are used to manage application resources on your managed clusters.
+A multi-cluster application uses a Kubernetes specification, but with additional automation of the deployment and lifecycle management of resources to individual clusters.
+A multi-cluster application allows you to deploy resources on multiple clusters, while maintaining easy-to-reconcile service routes, as well as full control of Kubernetes resource updates for all aspects of the application.
+
+
+## Governance and risk
+
+Governance and risk is the term used to define the processes that are used to manage security and compliance from a central interface page.
+After you configure a {product-title} hub cluster and a managed cluster, you can view and create policies with the Red Hat Advanced Cluster Management policy framework.
