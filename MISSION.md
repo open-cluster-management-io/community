@@ -74,19 +74,20 @@ Meeting recordings will be posted to a YouTube channel for offline viewing.
 
 ## Communication
 
-A public Google Group has been created to facilitate offline discussion outside of Github issues or Pull Requests.
-
-https://groups.google.com/forum/#!forum/open-cluster-management open-cluster-management@googlegroups.com
+A public [Google Group](https://groups.google.com/g/open-cluster-management) has been created to facilitate offline discussion outside of Github issues or Pull Requests.
 
 The project team has chosen to defer a new Slack team until we get enough critical mass in the community to warrant joining another Slack team or workspace.
 
 ## Governance
 
-The project will initially have a 3-person Bootstrap Steering Committee.
+* **Committees** The project will initially have a 3-person Bootstrap Steering Committee. The present steering
+  committee is a bootstrap committee and we want to work towards a future state where there is community representation and community determination of the steering committee members. In that future state, the steering committee size may be expanded to meet the needs of the community.
 
-The present steering committee is a bootstrap committee and we want to work towards a future state where there is community representation and community determination of the steering committee members. In that future state, the steering committee size may be expanded to meet the needs of the community.
+* **Special Interest Group (SIG)** are persistent open groups that focus on a part of the project.
+  SIGs must have open and transparent proceedings.
+  Anyone is welcome to participate and contribute provided they follow the Code of Conduct.
 
-In addition, a Technical Steering Committee will be established to provide oversight and guidance on API and architectural aspects of the project to ensure a consistent and robust technical foundation for the project.
+  The project has a bootstrap [sig-architecture](sig-architecture) to provide oversight and guidance on API and architectural aspects of the project to ensure a consistent and robust technical foundation for the project. More SIGs are expected to be established with the evolution of the project.
 
 ## Public Roadmap
 
