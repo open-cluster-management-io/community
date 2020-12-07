@@ -35,3 +35,11 @@ The following repositories describe the underlying API and controllers for the a
 * https://github.com/open-cluster-management/multicloud-operators-channel
 
 There are demonstrations available at https://github.com/open-cluster-management/demo-subscription-gitops .
+
+### Working Group Meetings
+
+The Working Group meets on a bi-weekly cadence on Thursday at 15:30 UTC.
+
+Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management/community/projects/1
+  
+  Meeting dial-in details, meeting notes and agendas are announced and published to the [open-cluster-management mailing list on Google Groups](https://groups.google.com/g/open-cluster-management) 
