@@ -38,7 +38,7 @@ There are demonstrations available at https://github.com/open-cluster-management
 
 ### Working Group Meetings
 
-The Working Group meets on a weekly cadence on Thursday at TBA UTC.
+The Working Group meets on a bi-weekly cadence on Thursday at 15:30 UTC.
 
 Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management/community/projects/1
   
