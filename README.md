@@ -36,9 +36,9 @@ The following repositories describe the underlying API and controllers for the a
 
 There are demonstrations available at https://github.com/open-cluster-management/demo-subscription-gitops .
 
-### Working Group Meetings
+### Community Meetings
 
-The Working Group meets on a bi-weekly cadence on Thursday at 15:30 UTC.
+The community meets on a bi-weekly cadence on Thursday at 15:30 UTC.
 
 Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management/community/projects/1.
   
