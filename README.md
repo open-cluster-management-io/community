@@ -36,6 +36,10 @@ The following repositories describe the underlying API and controllers for the a
 
 There are demonstrations available at https://github.com/open-cluster-management/demo-subscription-gitops .
 
+### Deployment images
+
+The open-cluster-management project uses `quay.io` to host deployment images. These images might not contain the latest changes. Following a merged pull request, please wait up to an hour for the images to be updated.
+
 ### Community meetings
 
 The community meets on a bi-weekly cadence on Thursday at 15:30 UTC.
