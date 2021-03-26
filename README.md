@@ -47,3 +47,12 @@ The community meets on a bi-weekly cadence on Thursday at 15:30 UTC.
 Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management/community/projects/1.
   
   Meeting dial-in details, meeting notes and agendas are announced and published to the [open-cluster-management mailing list on Google Groups](https://groups.google.com/g/open-cluster-management).
+
+### Get connected
+
+See the following options to connect with the community:
+
+ - [Slack](https://kubernetes.slack.com/archives/C01GE7YSUUF)
+ - [Mailing group](https://groups.google.com/g/open-cluster-management)
+ - [Community meetings](https://github.com/open-cluster-management/community#community-meetings)
+ - [YouTube channel](https://www.youtube.com/channel/UC7xxOh2jBM5Jfwt3fsBzOZw)
