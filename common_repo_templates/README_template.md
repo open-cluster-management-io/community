@@ -2,11 +2,11 @@
 
 [![License](https://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-## What is repo_name?
+## What is <repo_name>?
 
 Example header: What is the `multicloud-operators-subscription` repository?
 
-Example description: With <repo_name>, you can....
+Example description: With `<repo_name>`, you can....
 
 Go to the [Contributing guide](CONTRIBUTING.md) to learn how to get involved.
 
@@ -32,5 +32,5 @@ Go to the [Contributing guide](CONTRIBUTING.md) to learn how to get involved.
 
 ## References
 
-- The <repo_name> is part of the `open-cluster-management` community. For more information, visit: [open-cluster-management.io](https://open-cluster-management.io).
+- The `<repo_name>` is part of the `open-cluster-management` community. For more information, visit: [open-cluster-management.io](https://open-cluster-management.io).
 - Optional: List and link of additional references if needed.
