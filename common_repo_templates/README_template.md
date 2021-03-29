@@ -24,6 +24,10 @@ Go to the [Contributing guide](CONTRIBUTING.md) to learn how to get involved.
   - List of steps for deployment.
   - Please be aware of the community's [deployment images](https://github.com/open-cluster-management/community#deployment-images) special note.
 
+- Steps for test:
+
+  - List of steps for testing.
+
 - Check the [Security guide](SECURITY.md) if you need to report a security issue.
 
 ## References
