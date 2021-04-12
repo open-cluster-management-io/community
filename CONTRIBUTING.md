@@ -16,6 +16,8 @@ All contributions to the repository must be submitted under the terms of the [Ap
 
 By contributing to this project, you agree to the Developer Certificate of Origin (DCO). This document was created by the Linux Kernel community and is a simple statement that you, as a contributor, have the legal right to make the contribution. See the [DCO](DCO) file for details.
 
+Use the `-s` or `--signoff` flag to signoff on a Git commit. See the [Git documentation](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s) for details.
+
 ## Contributing a patch
 
 1. Submit an issue describing your proposed change to the repository in question. The repository owners will respond to your issue promptly.
