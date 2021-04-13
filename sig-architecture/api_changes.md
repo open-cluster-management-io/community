@@ -13,7 +13,7 @@ This document is oriented at developers who want to change existing APIs for Ope
 
 Before attempting a change to the API, you should familiarize yourself with a number of [existing API types](https://github.com/open-cluster-management/api) and with the API conventions.
 
-You should also consider the compatibility of the API changes. Open Cluster Management considers forwards and backwards compatibility of its APIs a top priority.
+You should also consider the compatibility of the API changes. Open Cluster Management considers forwards and backwards compatibility of its APIs as top priority.
 
 An API change is considered compatible if it:
 
@@ -25,6 +25,45 @@ An API change is considered compatible if it:
   * mutable fields do not become immutable
   * valid values do not become invalid
   * explicitly invalid values do not become valid
+
+Let's see an example for compatible API changes.
+
+In a hypothetical API of version `v1beta1`, the Application struct looks like this:
+
+```golang
+// v1beta1
+type Application struct {
+  Name        string `json:"name"`
+  Replicas    int    `json:"replicas"`
+}
+```
+
+If we add a new `Param` field, it is safe to add new fields without changing the API version, so we can simply change it to:
+
+```golang
+// v1beta1
+type Application struct {
+  Name        string `json:"name"`
+  Replicas    int    `json:"replicas"`
+  Param       string `json:"param"`
+}
+```
+
+The version of the API is still `v1beta1`, we just need to add default value for the new `Param` field so that API calls and stored objects that used to work will continue to work.
+
+Next time, we may consider to allow multiple `Param` values, then we can't simply replace `Param string` with `Param []string`. We have two options for this case:
+
+1. Add new `Params []string` field and the new field must be inclusive of the singular field, also we must handle all the cases of version skew, multiple clients, rollbacks and so on.
+2. Bump a new version(eg. `v1beta2`) for the API object and replace the old singular field `Param string` with the new plural field `Params []string`, we must implement api conversion logic to/from versioned APIs so that older clients that only know the singular field will continue to succeed and produce the same results as before the change, while newer clients can use your change without impacting older clients.
+
+```golang
+// v1beta2
+type Frobber struct {
+  Height int
+  Width  int
+  Params []string
+}
+```
 
 ### Versions in the APIs
 
@@ -49,7 +88,7 @@ Option 2: Manually upgrade the existing objects to a new stored version
 
 We prefer to option 1 because the migration process with option 1 is totally transparent to users, while option 2 need users' assistent and may introduce service interrupt.
 
-In addition, OCP 4.6+ will install the [Storage Version Migrator](https://github.com/openshift/kube-storage-version-migrator) be dafault. All we need to do is creating a migration request by the `StorageVersionMigration` resource similar to below:
+For option 1, all we need to do is creating a migration request by the `StorageVersionMigration` resource similar to below:
 
 ```yaml
 apiVersion: migration.k8s.io/v1alpha1
