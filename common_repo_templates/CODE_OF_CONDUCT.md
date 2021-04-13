@@ -1,5 +1,9 @@
 # Contributor Covenant Code of Conduct
 
+The Open Cluster Management project has adopted the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
+The English text of the CNCF Code of Conduct is made available here for reference.
+Additional [language translations](https://github.com/cncf/foundation/blob/master/code-of-conduct.md) are available.
+
 ## Our pledge
 
 In the interest of fostering an open and welcoming environment, we as
