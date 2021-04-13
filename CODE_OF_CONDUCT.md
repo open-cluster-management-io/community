@@ -1,6 +1,10 @@
 # Contributor Covenant Code of Conduct
 
-## Our Pledge
+The Open Cluster Management project has adopted the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
+The English text of the CNCF Code of Conduct is made available here for reference.
+Additional [language translations](https://github.com/cncf/foundation/blob/master/code-of-conduct.md) are available.
+
+## Our pledge
 
 In the interest of fostering an open and welcoming environment, we as
 contributors and maintainers pledge to making participation in our project and
@@ -9,7 +13,7 @@ size, disability, ethnicity, sex characteristics, gender identity and expression
 level of experience, education, socio-economic status, nationality, personal
 appearance, race, religion, or sexual identity and orientation.
 
-## Our Standards
+## Our standards
 
 Examples of behavior that contributes to creating a positive environment
 include:
@@ -22,7 +26,7 @@ include:
 
 Examples of unacceptable behavior by participants include:
 
-* The use of sexualized language or imagery and unwelcome sexual attention or
+* The use of sexualized language or imagery, and unwelcomed sexual attention or
  advances
 * Trolling, insulting/derogatory comments, and personal or political attacks
 * Public or private harassment
@@ -31,10 +35,10 @@ Examples of unacceptable behavior by participants include:
 * Other conduct which could reasonably be considered inappropriate in a
  professional setting
 
-## Our Responsibilities
+## Our responsibilities
 
 Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
+behavior, and are expected to take appropriate and fair corrective action in
 response to any instances of unacceptable behavior.
 
 Project maintainers have the right and responsibility to remove, edit, or
@@ -70,7 +74,7 @@ members of the project's leadership.
 This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
 available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html.
 
-[homepage]: https://www.contributor-covenant.org
+[Homepage]: https://www.contributor-covenant.org
 
-For answers to common questions about this code of conduct, see
+For answers to common questions about this Code of Conduct, see
 https://www.contributor-covenant.org/faq.
