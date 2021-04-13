@@ -11,6 +11,7 @@ The SIG Architecture maintains and evolves the design principles of Open Cluster
 - *API definitions*
 - *Architectural renderings*
 - *API conventions*
+- [API changes](api_changes.md)
 - *Design principles*
 - *Deprecation policy*
 - *Enhancement Proposal process*
