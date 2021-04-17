@@ -4,6 +4,7 @@
     - [Terms](#terms)
     - [Certificate of Origin](#certificate-of-origin)
     - [DCO Sign Off](#dco-sign-off)
+    - [Code of Conduct](#code-of-conduct)
     - [Contributing a patch](#contributing-a-patch)
     - [Issue and pull request management](#issue-and-pull-request-management)
 
@@ -19,13 +20,17 @@ By contributing to this project, you agree to the Developer Certificate of Origi
 
 ## DCO Sign Off
 
-You must sign your commit to state that you certify the [DCO](DCO). To sign your commit, add a line like the following at the end of your commit message:
+You must sign off your commit to state that you certify the [DCO](DCO). To certify your commit for DCO, add a line like the following at the end of your commit message:
 
 ```
 Signed-off-by: John Smith <john@example.com>
 ```
 
-This can be done with the `--signoff` option to `git commit`. See the [Git documentation](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s) for details. You can also mass sign-off a whole pull request with `git rebase --signoff main`, replacing `main` with the branch you are creating a pull request from.
+This can be done with the `--signoff` option to `git commit`. See the [Git documentation](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s) for details. You can also mass sign-off a whole pull request with `git rebase --signoff main`, replacing `main` with the branch you are creating a pull request into.
+
+## Code of Conduct
+
+The Open Cluster Management project has adopted the CNCF Code of Conduct. Refer to our [Community Code of Conduct](CODE_OF_CONDUCT.md) for details.
 
 ## Contributing a patch
 
