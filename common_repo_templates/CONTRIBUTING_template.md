@@ -27,7 +27,7 @@ You must sign off your commit to state that you certify the [DCO](https://github
 Signed-off-by: John Smith <john@example.com>
 ```
 
-This can be done with the `--signoff` option to `git commit`. See the [Git documentation](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s) for details. You can also mass sign-off a whole pull request with `git rebase --signoff main`, replacing `main` with the branch you are creating a pull request into.
+This can be done with the `--signoff` option to `git commit`. See the [Git documentation](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s) for details.
 
 ## Code of Conduct
 
