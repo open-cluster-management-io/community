@@ -36,6 +36,15 @@ The following repositories describe the underlying API and controllers for the a
 
 There are demonstrations available at https://github.com/open-cluster-management/demo-subscription-gitops .
 
+### Governance, Risk and Compliance (GRC) across Kubernetes clusters
+
+* Use prebuilt security and configuration controllers to enforce policy on Kubernetes configuration, identity and access management (IAM), Center for Internet Security (CIS), and certificate management across your clusters.
+* Use the governance policy framework provides governance capability to gain visibility, and drive remediation for various security and configuration aspects to help meet such enterprise standards.
+
+Policy controllers allow the declarative expression of a desired condition that can be audited or enforced against a set of managed clusters. `Policies` allow you to drive cross-cluster configuration or validate that certain configuration explicitly does not exist.
+
+See [Governance Policy Framework](https://github.com/open-cluster-management/governance-policy-framework) for more details.
+
 ### Deployment images
 
 The open-cluster-management project uses `quay.io` to host deployment images. These images might not contain the latest changes. Following a merged pull request, please wait up to an hour for the images to be updated.
