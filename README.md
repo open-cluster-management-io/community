@@ -5,7 +5,7 @@ Welcome! The open-cluster-management.io project is focused on enabling end-to-en
 
 Please read the [MISSION.md](MISSION.md) statement for more information.
 
-The open-cluster-management architecture uses a hub - agent model. The hub centralizes control of all the managed clusters. An agent, which we call the klusterlet, resides on each managed cluster to manage registration to the hub and run instructions from the hub.
+The open-cluster-management architecture uses a hub-agent model. The hub centralizes control of all the managed clusters. An agent, called the _klusterlet_, resides on each managed cluster to manage registration to the hub cluster and run instructions from the hub cluster.
 
 
 ![image](assets/ocm-arch.png)
@@ -39,9 +39,9 @@ There are demonstrations available at https://github.com/open-cluster-management
 ### Governance, Risk and Compliance (GRC) across Kubernetes clusters
 
 * Use prebuilt security and configuration controllers to enforce policy on Kubernetes configuration, identity and access management (IAM), Center for Internet Security (CIS), and certificate management across your clusters.
-* Use the governance policy framework provides governance capability to gain visibility, and drive remediation for various security and configuration aspects to help meet such enterprise standards.
+* Use the governance policy framework, which provides governance capability to gain visibility, and drive remediation for various security and configuration aspects to help meet such enterprise standards.
 
-Policy controllers allow the declarative expression of a desired condition that can be audited or enforced against a set of managed clusters. `Policies` allow you to drive cross-cluster configuration or validate that certain configuration explicitly does not exist.
+Policy controllers allow the declarative expression of a desired condition that can be audited or enforced against a set of managed clusters. _Policies_ allow you to drive cross-cluster configuration or validate that a certain configuration explicitly does not exist.
 
 See [Governance Policy Framework](https://github.com/open-cluster-management/governance-policy-framework) for more details.
 
