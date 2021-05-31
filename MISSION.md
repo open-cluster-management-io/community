@@ -1,6 +1,6 @@
 ## Mission Statement
 
-We seek to form an open community around multicluster and multicloud scenarios for containerized applications. We propose to anchor the initial community around  github.com/open-cluster-management and open-cluster-management.io.
+We seek to form an open community around multicluster and multicloud scenarios for containerized applications. We propose to anchor the initial community around github.com/open-cluster-management-io and open-cluster-management.io.
 
 We seek to add value to the community by a focused effort around many aspects of how users are deploying and managing Kubernetes clusters today. We seek to engage other parts of the community and both contribute to pre-existing efforts and invite contributors in those communities to cross-collaborate as part of this project.
 
@@ -44,7 +44,7 @@ Instances of abusive, harassing, or otherwise unacceptable behavior in Open Clus
 Anyone who is interested in getting involved is welcome to contribute in a number of ways:
 
 Join the recurring meeting forums (see below) to provide input as a stakeholder and help validate proposed use cases.
-Suggest enhancements via github.com/open-cluster-management/enhancements for consideration to the community.
+Suggest enhancements via github.com/open-cluster-management-io/enhancements for consideration to the community.
 Contribute to development via Pull Request for new enhancements or defect fixes.
 
 Suggested API and implementations will be accepted in accordance with the broad use cases outlined above. Our goal is to reserve the Kubernetes API Group open-cluster-management.io for well-reviewed and widely supported features.
@@ -96,4 +96,4 @@ The project team has chosen to defer a new Slack team until we get enough critic
 
 ## Security Response
 
-Please see https://github.com/open-cluster-management/community/blob/master/SECURITY.md.
+Please see https://github.com/open-cluster-management-io/community/blob/master/SECURITY.md.
