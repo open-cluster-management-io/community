@@ -50,5 +50,5 @@ See the following options to connect with the community:
  - [Website](https://open-cluster-management.io)
  - [Slack](https://kubernetes.slack.com/archives/C01GE7YSUUF)
  - [Mailing group](https://groups.google.com/g/open-cluster-management)
- - [Community meetings](https://github.com/open-cluster-management-io/community#community-meetings)
+ - [Community meetings](https://github.com/open-cluster-management-io/community/projects/1)
  - [YouTube channel](https://www.youtube.com/channel/UC7xxOh2jBM5Jfwt3fsBzOZw)
