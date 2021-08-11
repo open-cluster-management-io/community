@@ -9,17 +9,20 @@ The open-cluster-management architecture uses a hub - agent model. The hub centr
 
 ![image](assets/ocm-arch.png)
 
-There are a number of key use cases that are enabled by this project.
+There are a number of key use cases that are enabled by this project, and are categorized to 3 sub projects.
 
-### Cluster registration
+### Cluster Lifecycle: Cluster registration and management
 
-The API and controllers provide the function for cluster registration and manifests delivery to clusters. Simple core functions connect clusters, such as the klusterlet, to the hub. Other components run on this base. The following repositories describe the API and controllers for registration:
+The API and controllers provide the function for cluster registration, manifests delivery, cluster scheduling and addon management. Simple core functions connect clusters, such as the klusterlet, to the hub. Other components run on this base. The following repositories describe the API and controllers:
 
 * https://github.com/open-cluster-management-io/api
 * https://github.com/open-cluster-management-io/registration
 * https://github.com/open-cluster-management-io/work
+* https://github.com/open-cluster-management-io/placement
+* https://github.com/open-cluster-management-io/registration-operator
+* https://github.com/open-cluster-management-io/addon-framework
 
-### Delivery, upgrade, and configuration of applications on Kubernetes clusters
+### Application: Delivery, upgrade, and configuration of applications on Kubernetes clusters
 
 * Centrally create, update, and delete Kubernetes clusters across multiple private and public clouds.
 * Automatically deploy applications to specific clusters by subscribing to different workload (resource) channels, such as GitHub, Helm repository, ObjectStore, and resource templates.
@@ -30,6 +33,21 @@ The following repositories describe the underlying API and controllers for the a
 
 * https://github.com/open-cluster-management-io/multicloud-operators-subscription
 * https://github.com/open-cluster-management-io/multicloud-operators-channel
+
+### GRC: Governance, Risk and Compliance across Kubernetes clusters
+
+* Use prebuilt security and configuration controllers to enforce policy on Kubernetes configuration, identity and access management (IAM), Center for Internet Security (CIS), and certificate management across your clusters.
+
+Policy controllers allow the declarative expression of a desired condition that can be audited or enforced against a set of managed clusters. _Policies_ allow you to drive cross-cluster configuration or validate that a certain configuration explicitly does not exist.
+
+
+The following repositories describe the underlying API and controllers for the GRC model:
+
+* https://github.com/open-cluster-management-io/config-policy-controller
+* https://github.com/open-cluster-management-io/governance-policy-status-sync
+* https://github.com/open-cluster-management-io/governance-policy-spec-sync
+* https://github.com/open-cluster-management-io/governance-policy-template-sync
+* https://github.com/open-cluster-management-io/governance-policy-propagator
 
 ### Deployment images
 
