@@ -1,4 +1,5 @@
 # Security Response
 
-If you've found a security issue that you'd like to disclose confidentially please contact Red Hat's Product Security team.
-Details at https://access.redhat.com/security/team/contact
+The Open Cluster Management (OCM) community welcomes and appreciates responsible disclosure of security vulnerabilities.
+
+If you know of a security issue with OCM, please report it to `OCM-security@googlegroups.com`.
