@@ -68,7 +68,7 @@ An Organization Member must meet the responsibilities and has the requirements o
     * May give commands to CI/CD automation
     * Entitled to vote in the [TODO: appropriate election]
     * Can be added to GitHub teams in the Open Cluster Management org
-    * Can recommend other contributors to become Org Member
+    * Can recommend other contributors to become Org Members
 
 The process for a Contributor to become an Organization Member is as follows:
 
@@ -143,8 +143,8 @@ Process of becoming a maintainer:
 It is important for contributors to be and stay active to set an example and show commitment to the project. Inactivity is harmful to the project as it may lead to unexpected delays, contributor attrition, and a loss of trust in the project.
 
 * Inactivity is measured by:
-    * Periods of no contributions for longer than 12 months
-    * Periods of no communication for longer than 6 months
+    * Periods of no contributions for longer than 18 months
+    * Unannounced periods of no communication for longer than 4 months
 * Consequences of being inactive include:
     * Involuntary removal or demotion
     * Being asked to move to Emeritus status

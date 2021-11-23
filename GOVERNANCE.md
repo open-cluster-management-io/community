@@ -7,7 +7,7 @@
   * [Steering Committee Elections](#steering-committee-elections)
 * [Code of Conduct Committee](@code-of-conduct-committee)
 * [Adding New Subprojects](#adding-new-Subprojects)
-* [Remocing Projects](#removing-projects)
+* [Removing Projects](#removing-projects)
 
 The Open Cluster Management umbrella project is composed as a federation of individual projects,
 some independent and some interdependent, each of which focuses on some aspect
@@ -17,14 +17,10 @@ of Kubernetes cluster and multicluster management.  Our governance reflects this
 
 Open Cluster Management and its leadership embrace the following values:
 
-* [TODO: List of Values]
-
-<!-- 
-This is where you put the core values or principles of your project, like
-openness, distributed design, fairness, diversity, etc.
-See https://contribute.cncf.io/maintainers/governance/charter for guidance 
-and examples.
--->
+* Openness: Open Cluster Management is an open source community driven project.
+* Distributed design: Distributed asynchronous ownership, collaboration, communication and decision making are the cornerstones of our world-wide community.
+* Fairness: Ideas and contributions are accepted according to their technical merit and alignment with project objectives, scope, and design principles.
+* Diversity and inclusion: Everyone are welcome to participate in the Open Cluster Management project regardless of gender, gender identity, sexual orientation, disability, race, ethnicity, age, religion or economic status.
 
 ## Individual Subproject Governance
 
@@ -56,7 +52,7 @@ majority vote of the Steering Committee.
 The overall Open Cluster Management umbrella project is governed by a Steering
 Committee, which is selected as follows:
 
-* Two Maintainer representatives from each member Subproject
+* One Maintainer representatives from each member Subproject
 * Two general "Community Representatives"
 
 ### Steering Committee Duties
@@ -111,7 +107,8 @@ community meeting.
 ## Code of Conduct Committee
 
 In order to review and enforce the Code of Conduct, the Steering Committee selects
-3 people to be on the Code of Conduct Committee.  
+3 people to be on the Code of Conduct Committee.
+
 These individuals will be chosen based on their community management and code of conduct
 experience, with diverse representation across the committee, including employer, gender,
 race, background, and region of the world.  To avoid fatigue, the Steering Committee will
@@ -154,11 +151,19 @@ Members of Open Cluster Management, but the Subproject is not entitled to a repr
 Steering Committee.  Steering will review Experimental Subprojects at least twice
 per year to determine if they have matured to full Subproject status.
 
+New Subprojects will be initialized with a set of maintainers, reviewers, 
+contributors, and other roles assigned based on the people doing the work before
+the Subproject was accepted. The appropriate contributors will be added as 
+Organization Members without the regular process.
+
 ## Removing Projects
 
 In some cases, projects will become inactive or unmaintainable, or wish to separate
 from Open Cluster Management. Any Steering Committee member may propose removal of a project on
-these grounds, and Steering can confirm this with a majority vote.
+these grounds, and Steering can confirm this with a majority vote. The CNCF will
+determine which, if any, assets of those subprojects will be removable should a
+project leave OCM.
 
-Projects which still have contributors will then be moved to a repository in their
-own namespace.  Projects which have ceased all activity are moved to an archive namespace.
+Where possible, Projects which still have contributors will then be moved to a 
+repository in their own namespace.  Projects which have ceased all activity are 
+moved to an archive namespace.
