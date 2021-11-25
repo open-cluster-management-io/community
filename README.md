@@ -12,7 +12,7 @@ Please read the [MISSION.md](MISSION.md) statement for more information.
 
 ### Community meetings
 
-The community meets on a bi-weekly cadence on Thursday at 01:00 UTC.
+The community meets on a bi-weekly cadence on Friday at 01:00 UTC.
 
 Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management-io/community/projects/1.
   
