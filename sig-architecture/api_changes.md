@@ -11,7 +11,7 @@ This document is oriented at developers who want to change existing APIs for Ope
 
 ### Things you should consider before you change the APIs
 
-Before attempting a change to the API, you should familiarize yourself with a number of [existing API types](https://github.com/open-cluster-management/api) and with the API conventions.
+Before attempting a change to the API, you should familiarize yourself with a number of [existing API types](https://github.com/open-cluster-management-io/api) and with the API conventions.
 
 You should also consider the compatibility of the API changes. Open Cluster Management considers forwards and backwards compatibility of its APIs as top priority.
 
