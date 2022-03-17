@@ -2,15 +2,23 @@
 
 ## Scope
 
-SIG Policy covers governance capability, security remediation, and configuration management for the Open Cluster Management (OCM) project.
+The Policy SIG covers governance capability, security remediation, and configuration management for the Open Cluster
+Management (OCM) project.
+
+In particular, it currently includes the OCM Policy Framework, which is responsible for top-level `Policy` objects and
+syncing those objects between the Hub and managed clusters. It additionally includes the controllers that process the
+down-level policies such as `ConfigurationPolicy`.
 
 ### In scope
 
 #### Code, Binaries and Services
 
 - Review and approve policy related OCM enhancements.
-- APIs used for OCM policies.
-- Tools and documentation to aid in ecosystem tool interoperability around policy (e.g. Policy Generator)
+- The APIs in the `policy.open-cluster-management.io` API group. The API versioning and deprecation strategy
+  follows the OCM
+  [graduation criteria](https://github.com/open-cluster-management-io/enhancements/tree/main/guidelines#graduation-criteria).
+- Tools and documentation to aid in ecosystem tool interoperability around policy (e.g. Policy Generator).
+- Enhancements that affect security and scalability will often be discussed at the OCM community level.
 
 #### Cross-cutting and Externally Facing Processes
 
