@@ -39,3 +39,7 @@ Governance Policy Status Sync
 Policy Generator
 - **Owners:**
   - [ocm-kustomize-generator-plugins](https://github.com/open-cluster-management-io/ocm-kustomize-generator-plugins/blob/main/OWNERS)
+
+## Contribution Guidelines
+
+Please review the [contribution guidelines](contribution-guidelines.md) before contributing.
