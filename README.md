@@ -8,6 +8,8 @@ This is the starting point for joining and contributing to the OCM community - i
 
 The open-cluster-management.io project is focused on enabling end-to-end visibility and control across your Kubernetes clusters.
 
+Release information can be found here: https://open-cluster-management.io/community/releases/
+
 Please read the [MISSION.md](MISSION.md) statement for more information.
 
 ### Community meetings
