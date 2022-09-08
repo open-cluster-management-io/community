@@ -74,3 +74,11 @@ Once the PR is approved, Prow will merge the PR.
 
 For more details on how the code review process works with Prow, you may read the
 [Kubernetes code review process](https://github.com/kubernetes/community/blob/master/contributors/guide/owners.md#the-code-review-process).
+
+### Reviews
+
+All design document PRs and PRs that add new functionality must have at least two approvals from the Policy SIG,
+excluding the PR author, before being merged. Note that you'll need to comment with `/hold` to avoid Prow from merging
+the PR after a single approval.
+
+All other PRs can be merged with one approval from the Policy SIG.
