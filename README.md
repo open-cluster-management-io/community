@@ -25,7 +25,7 @@ Meeting Agenda and Topics can be found here: https://github.com/open-cluster-man
 See the following options to connect with the community:
 
  - [Website](https://open-cluster-management.io)
- - [Slack](https://kubernetes.slack.com/archives/C01GE7YSUUF)
+ - [Slack](https://kubernetes.slack.com/channels/open-cluster-mgmt)
  - [Mailing group](https://groups.google.com/g/open-cluster-management)
  - [Community meetings](https://github.com/open-cluster-management-io/community/projects/1)
  - [YouTube channel](https://www.youtube.com/c/OpenClusterManagement)
