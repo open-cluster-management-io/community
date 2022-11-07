@@ -52,7 +52,7 @@ Suggested API and implementations will be accepted in accordance with the broad 
 To ensure opportunities for broad user contributions, a public forum will be hosted to demonstrate new capabilities, solicit feedback and offer a forum for real time Q&A.
 Meeting recordings will be posted to a YouTube channel for offline viewing.
 
-The community meets on a weekly cadence alternating between Friday at 01:30 UTC and Thursday at 14:30 UTC. The Thursday meeting is on demand basis.
+The community meets on a weekly cadence alternating between Friday at 01:30 UTC and Thursday at 14:00 UTC. The Thursday meeting is on demand basis.
 
 Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management-io/community/projects/1.
 
