@@ -26,6 +26,7 @@ See the following options to connect with the community:
 
  - [Website](https://open-cluster-management.io)
  - [Slack](https://kubernetes.slack.com/channels/open-cluster-mgmt)
+ - [WeChat](https://github.com/open-cluster-management-io/community/blob/main/COMMUNICATION.md#wechat)
  - [Mailing group](https://groups.google.com/g/open-cluster-management)
  - [Community meetings](https://github.com/open-cluster-management-io/community/projects/1)
  - [YouTube channel](https://www.youtube.com/c/OpenClusterManagement)
