@@ -12,9 +12,12 @@ Release information can be found here: https://open-cluster-management.io/commun
 
 Please read the [MISSION.md](MISSION.md) statement for more information.
 
-### Community meetings
+### Community meetings and office hours
 
-The community meets on a weekly cadence alternating between Friday at 01:30 UTC and Thursday at 14:00 UTC. The Thursday meeting is on demand basis.
+The community meets on bi-weekly cadence Friday at 01:30 UTC.
+The office hours is on bi-weekly cadence Wednesday at 17:00 UTC.
+
+Refer to the meeting calendar for the latest schedule: https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com.
 
 Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management-io/community/projects/1.
   
@@ -28,5 +31,5 @@ See the following options to connect with the community:
  - [Slack](https://kubernetes.slack.com/channels/open-cluster-mgmt)
  - [WeChat](https://github.com/open-cluster-management-io/community/blob/main/COMMUNICATION.md#wechat)
  - [Mailing group](https://groups.google.com/g/open-cluster-management)
- - [Community meetings](https://github.com/open-cluster-management-io/community/projects/1)
+ - [Community meetings and office hours](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com)
  - [YouTube channel](https://www.youtube.com/c/OpenClusterManagement)
