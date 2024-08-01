@@ -19,6 +19,13 @@ Each of the contributor roles below is organized into lists of three types of th
 
 Open Cluster Management (OCM) is a project made up of several Subprojects, such as Foundation and Policy.  This contributor ladder applies to each Subproject.  As such, a contributor advances in each Subproject separately, and may be a Member in one Subproject while being a Maintainer in another.  For the Open Cluster Management project overall, the contributor is considered to be the highest level they have reached in any Subproject.  Thus, someone who is a Project Member in one Subproject is a Project Member of OCM overall.
 
+| Role | Responsibilities | Requirements | Privileges |
+| ---- | ---------------- | ------------ | ---------- |
+| [Contributor](#contributor) | Casual contributor to the project | n/a | Invitations to contributor events, Eligible to become an Organization Member |
+| [Organization Member](#organization-member) | Regular active contributor in the community | Has pushed at least one PR to an open-cluster-management-io repository | Can recommend a contributor to become a member |
+| [Reviewer](#reviewer) | Hold expertise of a repo or a specific area | Need to review PRs | Can recommend a member to become a reviewer |
+| [Maintainer](#maintainer) | Reviewing at least 20 PRs per year, especially PRs that involve multiple parts of the project, Participating in, and leading, community meetings | Experience as a Reviewer for at least 3 months, Can commit to spending at least 15 hours per month working on the project | Added to the OWNERs file in one or more Subprojects, and recommand a reviewer to become a maintainer |
+
 ### Contributor
 
 Description: A Contributor contributes directly to the project and adds value to it. Contributions need not be code. People at the Contributor level may be new contributors, or they may only contribute occasionally.
@@ -48,19 +55,9 @@ Description: An Organization Member is an established contributor who regularly 
 
 An Organization Member must meet the responsibilities and has the requirements of a Contributor, plus:
 
-* Responsibilities include:
-    * Continues to contribute regularly, as demonstrated by having at least 25 contributions a year, as demonstrated by Devstats project metrics. 
 * Requirements:
-    * Must have successful contributions to the project, including at least one of the following:
-        * 2 accepted PRs,
-        * Reviewed 3 PRs,
-        * Resolved and closed 5 Issues,
-        * Become responsible for a key project management area,
-        * Or some equivalent combination or contribution
-    * Must have been contributing for at least 3 months
-    * Must be actively contributing to at least one project area
-    * Must have two sponsors who are also Organization Members
-    * Enable 2FA on their GitHub account
+    * Contribute at least 1 PR within the last 6 months
+    * Attend to community meetings
 
 * Privileges:
     * May be assigned Issues and Reviews
@@ -127,19 +124,20 @@ A Maintainer must meet the responsibilities and requirements of a Reviewer, plus
     * Represent the project in public as a Maintainer
     * Communicate with the CNCF on behalf of the project
     * Have a vote in Maintainer decision-making meetings
-    
+
 
 Process of becoming a maintainer:
 1. Any current Maintainer may nominate a current Reviewer to become a new Maintainer, by opening a PR against the root of the Subproject's primary repository, adding the nominee as an Approver in the OWNERS file.
 2. The nominee will add a comment to the PR testifying that they agree to all requirements of becoming a Maintainer.
 3. A majority of the current Maintainers of that Subproject must then approve the PR.
 
+
 ## Inactivity
 It is important for contributors to be and stay active to set an example and show commitment to the project. Inactivity is harmful to the project as it may lead to unexpected delays, contributor attrition, and a loss of trust in the project.
 
 * Inactivity is measured by:
-    * Periods of no contributions for longer than 18 months
-    * Unannounced periods of no communication for longer than 4 months
+    * Periods of no contributions for longer than **18** months
+    * Unannounced periods of no communication for longer than **4** months
 * Consequences of being inactive include:
     * Involuntary removal or demotion
     * Being asked to move to Emeritus status
