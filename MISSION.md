@@ -54,7 +54,7 @@ Meeting recordings will be posted to a YouTube channel for offline viewing.
 
 The community meets on a weekly cadence alternating between Friday at 01:30 UTC and Thursday at 14:00 UTC. The Thursday meeting is on demand basis.
 
-Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management-io/community/projects/1.
+Meeting Agenda and Topics can be found [here](https://docs.google.com/document/d/1CPXPOEybBwFbJx9F03QytSzsFQImQxeEtm8UjhqYPNg).
 
 ## Communication
 
