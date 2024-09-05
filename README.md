@@ -19,7 +19,7 @@ The office hours is on bi-weekly cadence Wednesday at 17:00 UTC.
 
 Refer to the meeting calendar for the latest schedule: https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com.
 
-Meeting Agenda and Topics can be found here: https://github.com/open-cluster-management-io/community/projects/1.
+Meeting Agenda and Topics can be found [here](https://docs.google.com/document/d/1CPXPOEybBwFbJx9F03QytSzsFQImQxeEtm8UjhqYPNg).
   
   Meeting dial-in details, meeting notes and agendas are announced and published to the [open-cluster-management mailing list on Google Groups](https://groups.google.com/g/open-cluster-management).
 
