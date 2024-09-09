@@ -6,20 +6,20 @@ Note: The maintainers of integrations and addons **are not** listed here, as the
 We enthusiastically welcome contributors to create addons, whether within or outside the ocm-io organization. All integrations and addons are listed on [this page](https://open-cluster-management.io/getting-started/integration/).
 
 
-* Chunlin Yang (Redhat, @clyang82)
-* David Eads (Redhat, @deads2k)
+* Chunlin Yang (Red Hat, @clyang82)
+* David Eads (Red Hat, @deads2k)
 * Dong Beiqing (eBay, @dongbeiqing)
 * Hao Lin (eBay, @haowells)
-* Jian Qiu (Redhat, @qiujian16)
-* Jian Zhu (Redhat, @zhujian7)
-* Le Yang (Redhat, @elgnay)
-* LongLong Cao (Redhat, @morvencao)
-* Mike Ng (Redhat, @mikeshng)
-* Qing Hao (Redhat, @haoqing0110)
+* Jian Qiu (Red Hat, @qiujian16)
+* Jian Zhu (Red Hat, @zhujian7)
+* Le Yang (Red Hat, @elgnay)
+* LongLong Cao (Red Hat, @morvencao)
+* Mike Ng (Red Hat, @mikeshng)
+* Qing Hao (Red Hat, @haoqing0110)
 * Tamal Saha (AppsCode, @tamalsaha)
-* Wei Liu (Redhat, @skeeey)
-* Zhao Xue (Redhat, @xuezhaojun)
-* Zhiwei Yin (Redhat, @zhiweiyin318)
+* Wei Liu (Red Hat, @skeeey)
+* Zhao Xue (Red Hat, @xuezhaojun)
+* Zhiwei Yin (Red Hat, @zhiweiyin318)
 
 ## The maintainers in different areas of OCM
 
