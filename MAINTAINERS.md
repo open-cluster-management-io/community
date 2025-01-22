@@ -1,14 +1,16 @@
 # Maintainers
 
-## The maintainer list of core ocm(names are in alphabetical order)
+## The maintainer list of core OCM(names are in alphabetical order)
 
 Note: The maintainers of integrations and addons **are not** listed here, as they are responsible for their own repositories.
-We enthusiastically welcome contributors to create addons, whether within or outside the ocm-io organization. All integrations and addons are listed on [this page](https://open-cluster-management.io/getting-started/integration/).
+We enthusiastically welcome contributors to create addons, whether within or outside the OCM-io organization. All integrations and addons are listed on [this page](https://open-cluster-management.io/docs/getting-started/integration/).
 
 
+* Amrutha Harikumar (Guidewire Software, @amrcoder)
 * Chunlin Yang (Red Hat, @clyang82)
 * David Eads (Red Hat, @deads2k)
 * Dong Beiqing (eBay, @dongbeiqing)
+* Gaurav Jaswal (Guidewire Software, @jaswalkiranavtar)
 * Hao Lin (eBay, @haowells)
 * Jian Qiu (Red Hat, @qiujian16)
 * Jian Zhu (Red Hat, @zhujian7)
@@ -16,6 +18,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * LongLong Cao (Red Hat, @morvencao)
 * Mike Ng (Red Hat, @mikeshng)
 * Qing Hao (Red Hat, @haoqing0110)
+* Suvaansh Kumar (Guidewire Software, @suvaanshkumar)
 * Tamal Saha (AppsCode, @tamalsaha)
 * Wei Liu (Red Hat, @skeeey)
 * Zhao Xue (Red Hat, @xuezhaojun)
@@ -29,7 +32,10 @@ We enthusiastically welcome contributors to create addons, whether within or out
         * Jian Qiu
         * David Eads
     * `registration`
+        * Amrutha Harikumar
+        * Gaurav Jaswal
         * Le Yang
+        * Suvaansh Kumar
         * Wei Liu
         * Zhao Xue
     * `work`
