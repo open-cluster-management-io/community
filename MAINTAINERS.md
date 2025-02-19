@@ -14,6 +14,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * Hao Lin (eBay, @haowells)
 * Jian Qiu (Red Hat, @qiujian16)
 * Jian Zhu (Red Hat, @zhujian7)
+* Joshua Packer (Red Hat, @jnpacker)
 * Le Yang (Red Hat, @elgnay)
 * LongLong Cao (Red Hat, @morvencao)
 * Mike Ng (Red Hat, @mikeshng)
@@ -61,11 +62,12 @@ We enthusiastically welcome contributors to create addons, whether within or out
     * David Eads
 * [clusteradm](https://github.com/open-cluster-management-io/clusteradm)
     * Jian Qiu
-    * Zhu Jian
+    * Jian Zhu
 
 ### Community and Docs
 * [community](https://github.com/open-cluster-management-io/community)
     * Jian Qiu
+    * Joshua Packer
     * Mike Ng
 * [website](https://github.com/open-cluster-management-io/open-cluster-management-io.github.io)
     * Jian Qiu
