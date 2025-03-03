@@ -12,6 +12,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * Dong Beiqing (eBay, @dongbeiqing)
 * Gaurav Jaswal (Guidewire Software, @jaswalkiranavtar)
 * Hao Lin (eBay, @haowells)
+* Jeffrey Wong (Guidewire Software, @jeffw17)
 * Jian Qiu (Red Hat, @qiujian16)
 * Jian Zhu (Red Hat, @zhujian7)
 * Joshua Packer (Red Hat, @jnpacker)
@@ -19,6 +20,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * LongLong Cao (Red Hat, @morvencao)
 * Mike Ng (Red Hat, @mikeshng)
 * Qing Hao (Red Hat, @haoqing0110)
+* Ramesh Krishna (Guidewire Software, @ramekris3163)
 * Suvaansh Kumar (Guidewire Software, @suvaanshkumar)
 * Tamal Saha (AppsCode, @tamalsaha)
 * Wei Liu (Red Hat, @skeeey)
@@ -33,12 +35,16 @@ We enthusiastically welcome contributors to create addons, whether within or out
         * Jian Qiu
         * David Eads
     * `registration`
-        * Amrutha Harikumar
         * Gaurav Jaswal
         * Le Yang
-        * Suvaansh Kumar
         * Wei Liu
         * Zhao Xue
+    * `awsirsa registration`
+        * Amrutha Harikumar
+        * Gaurav Jaswal
+        * Jeffrey Wong
+        * Ramesh Krishna
+        * Suvaansh Kumar
     * `work`
         * Le Yang
         * Jian Zhu
