@@ -78,3 +78,10 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * [website](https://github.com/open-cluster-management-io/open-cluster-management-io.github.io)
     * Jian Qiu
     * Mike Ng
+
+## Emeritus Maintainers
+
+These individuals have contributed significantly to the project but are no longer actively maintaining it.
+
+* Min Kim (Ant Group, @yue9944882)
+* Yong Feng (Alibaba, @luckyfengyong)
