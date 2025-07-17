@@ -7,6 +7,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 
 
 * Amrutha Harikumar (Guidewire Software, @amrcoder)
+* Ben Perry (Saturn Cloud, @bhperry)
 * Chunlin Yang (Red Hat, @clyang82)
 * David Eads (Red Hat, @deads2k)
 * Dong Beiqing (eBay, @dongbeiqing)
@@ -23,6 +24,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * Ramesh Krishna (Guidewire Software, @ramekris3163)
 * Suvaansh Kumar (Guidewire Software, @suvaanshkumar)
 * Tamal Saha (AppsCode, @tamalsaha)
+* Tyler Gillson (Spectro Cloud, @TylerGillson)
 * Wei Liu (Red Hat, @skeeey)
 * Zhao Xue (Red Hat, @xuezhaojun)
 * Zhiwei Yin (Red Hat, @zhiweiyin318)
@@ -46,6 +48,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
         * Ramesh Krishna
         * Suvaansh Kumar
     * `work`
+        * Ben Perry
         * Le Yang
         * Jian Zhu
     * `placement`
@@ -63,12 +66,15 @@ We enthusiastically welcome contributors to create addons, whether within or out
     * Le Yang
     * Zhiwei Yin
     * Jian Zhu
-* [sdk-go](https://github.com/open-cluster-management-io/sdk-go/blob/main/OWNERS)
+* [sdk-go](https://github.com/open-cluster-management-io/sdk-go)
     * Jian Qiu
     * David Eads
 * [clusteradm](https://github.com/open-cluster-management-io/clusteradm)
     * Jian Qiu
     * Jian Zhu
+* [lab](https://github.com/open-cluster-management-io/lab)
+    * TylerGillson
+    * Zhao Xue
 
 ### Community and Docs
 * [community](https://github.com/open-cluster-management-io/community)
