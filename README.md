@@ -1,35 +1,82 @@
 # Open Cluster Management Community
 
-![image](assets/ocm-logo.png)
+<div align="center">
 
-Welcome to the Open Cluster Management(OCM) community!
+![OCM Logo](assets/ocm-logo.png)
 
-This is the starting point for joining and contributing to the OCM community - improving docs, improving code, giving talks etc.
+[![CNCF Status](https://img.shields.io/badge/CNCF-Sandbox%20Project-blue)](https://www.cncf.io/projects/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/badge/release-v1.0.0-green.svg)](https://github.com/open-cluster-management-io/ocm/releases)
+[![Slack](https://img.shields.io/badge/slack-%23open--cluster--mgmt-brightgreen.svg?logo=slack)](https://kubernetes.slack.com/channels/open-cluster-mgmt)
 
-The open-cluster-management.io project is focused on enabling end-to-end visibility and control across your Kubernetes clusters.
+**Make working with many Kubernetes clusters super easy regardless of where they are deployed**
 
-Release information can be found here: https://open-cluster-management.io/community/releases/
+[Website](https://open-cluster-management.io) • [Documentation](https://open-cluster-management.io/getting-started/) • [Community](#community) • [Contributing](#contributing)
 
-Please read the [MISSION.md](MISSION.md) statement for more information.
+</div>
 
-### Community meetings and office hours
+## About Open Cluster Management
 
-The community meets on bi-weekly cadence Friday at 01:30 UTC.
-The office hours is on bi-weekly cadence Wednesday at 17:00 UTC.
+Welcome to the **Open Cluster Management (OCM)** community!
 
-Refer to the meeting calendar for the latest schedule: https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com.
+Open Cluster Management is a **CNCF Sandbox project** focused on multicluster and multicloud scenarios for Kubernetes applications. We provide open APIs that are evolving for cluster registration, work distribution, dynamic placement of policies and workloads, and much more.
 
-Meeting Agenda and Topics can be found [here](https://docs.google.com/document/d/1CPXPOEybBwFbJx9F03QytSzsFQImQxeEtm8UjhqYPNg).
-  
-  Meeting dial-in details, meeting notes and agendas are announced and published to the [open-cluster-management mailing list on Google Groups](https://groups.google.com/g/open-cluster-management).
+## Community
 
-### Get connected
+### Get Connected
 
-See the following options to connect with the community:
+- **[Website](https://open-cluster-management.io)**
+- **[Slack](https://kubernetes.slack.com/channels/open-cluster-mgmt)** - Our most popular communication channel!
+- **[Mailing List](https://groups.google.com/g/open-cluster-management)**
+- **[GitHub Discussions](https://github.com/open-cluster-management-io/community/discussions)**
+- **[YouTube Channel](https://www.youtube.com/c/OpenClusterManagement)**
+- **[WeChat](COMMUNICATION.md#wechat)** - Ask for an invite in Slack
 
- - [Website](https://open-cluster-management.io)
- - [Slack](https://kubernetes.slack.com/channels/open-cluster-mgmt)
- - [WeChat](https://github.com/open-cluster-management-io/community/blob/main/COMMUNICATION.md#wechat)
- - [Mailing group](https://groups.google.com/g/open-cluster-management)
- - [Community meetings and office hours](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com)
- - [YouTube channel](https://www.youtube.com/c/OpenClusterManagement)
+### Community Meetings
+
+**[Meeting Calendar](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com)**  
+**[Meeting Agenda & Notes](https://docs.google.com/document/d/1CPXPOEybBwFbJx9F03QytSzsFQImQxeEtm8UjhqYPNg)**
+
+## End Users
+
+OCM is being used by companies both large and small. See our [ADOPTERS.md](https://github.com/open-cluster-management-io/ocm/blob/main/ADOPTERS.md) for the full list.
+
+*Are you using OCM? [Share it with us on Slack!](https://kubernetes.slack.com/channels/open-cluster-mgmt)*
+
+## Contributing
+
+We welcome contributions from everyone! Here's how you can get involved:
+
+1. **Read our documentation**:
+   - [Code of Conduct](CODE_OF_CONDUCT.md)
+   - [Contributing Guide](CONTRIBUTING.md) 
+   - [Contributor Ladder](CONTRIBUTOR_LADDER.md)
+   - [Mission Statement](MISSION.md)
+
+2. **Start contributing**:
+   - Report bugs and request features
+   - Improve documentation
+   - Submit code contributions
+   - Give talks and participate in community events
+
+3. **Join the conversation**:
+   - Participate in community meetings
+   - Join discussions on GitHub and Slack
+   - Help answer questions from other community members
+
+## Governance
+
+Open Cluster Management is governed by a **Steering Committee** and follows a clear **Contributor Ladder**. 
+
+- **[Governance](GOVERNANCE.md)** - Complete governance model
+- **[Project Structure](GOVERNANCE.md#project-structure)** - Core projects vs subprojects
+- **[Contributor Ladder](CONTRIBUTOR_LADDER.md)** - Path to increased involvement
+- **[Maintainers](MAINTAINERS.md)** - Current project maintainers
+
+## Resources
+
+- **[Documentation](https://open-cluster-management.io/getting-started/)**
+- **[Releases](https://open-cluster-management.io/community/releases/)**
+- **[Public Roadmap](https://github.com/open-cluster-management-io/community/projects/2)**
+- **[Security](SECURITY.md)** - Security response and reporting
+- **[License](LICENSE)** - Apache 2.0
