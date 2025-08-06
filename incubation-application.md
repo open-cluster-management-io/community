@@ -225,7 +225,12 @@ Project communication is done through Slack, GitHub, a weekly community meeting 
 
 - [x] **Up-to-date public meeting schedulers and/or integration with CNCF calendar.**
 
-Our weekly meeting appears on the CNCF calendar.
+## Community Meetings
+We offer two meetings to accomodate timezones and interests. Both are available on the [OCM Calendar](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com) and **anyone is welcome to join them both**!
+  - **Open Cluster Management Lunch Chat**: A bi-weekly (fortnightly) North America/Europe-centric timezone meeting. This is a more free-flowing "office hours" type of call. All questions, issues, interests, and comments are welcome!
+  - **Open Cluster Management community meeting**: A bi-weekly (fortnightly) and aligned closer to an APAC timezone with a more formal discussion format with presentations.
+
+As with any global community working with timezones all meetings are flexible and may vary in content and frequency. Recordings of meetings and additonal community communication can be found on the [Community](https://open-cluster-management.io/community/) page of the website.
 
 <!-- (Project assertion goes here) --> 
 
