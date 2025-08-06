@@ -327,9 +327,8 @@ Open Cluster Management maintains a Security Response Team responsible for coord
 - Coordinate with maintainers to develop fixes
 - Manage security advisory process
 - Ensure timely communication to users about security issues
+- PLease visit our [SECURITY.md](https://github.com/open-cluster-management-io/community/blob/main/SECURITY.md) page for full details on the process as well as contact details.
 
-**Current Security Response Team Members:**
-- TODO: Add security team members with contact information
 
 ## Reporting Security Issues
 
@@ -412,10 +411,15 @@ Open Cluster Management maintains several communication channels for different p
 
 ## Public Channels
 
-- **GitHub Discussions**: [OCM Community Discussions](https://github.com/open-cluster-management-io/community/discussions) - General community discussions
-- **Slack**: [CNCF Slack #open-cluster-mgmt](https://cloud-native.slack.com/channels/open-cluster-mgmt) - Real-time community chat
-- **Mailing List**: TODO: Add mailing list information
-- **Community Meetings**: Monthly community meetings (calendar link: TODO)
+- **Slack #open-cluster-mgmt**: Real-time community chat - [START HERE!](https://kubernetes.slack.com/channels/open-cluster-mgmt) :)
+- **Mailing List**: [OCM Mailing List at Google Groups](https://groups.google.com/g/open-cluster-management)
+
+## Community Meetings
+We offer two meetings to accomodate timezones and interests. Both are available on the [OCM Calendar](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com) and **anyone is welcome to join them both**!
+  - **Open Cluster Management Lunch Chat**: A bi-weekly (fortnightly) North America/Europe-centric timezone meeting. This is a more free-flowing "office hours" type of call. All questions, issues, interests, and comments are welcome!
+  - **Open Cluster Management community meeting**: A bi-weekly (fortnightly) and aligned closer to an APAC timezone with a more formal discussion format with presentations.
+
+As with any global community working with timezones all meetings are flexible and may vary in content and frequency. Recordings of meetings and additonal community communication can be found on the [Community](https://open-cluster-management.io/community/) page of the website.
 
 ## Project-Specific Channels
 
@@ -423,9 +427,8 @@ Each subproject may maintain its own communication channels as documented in the
 
 ## Private Channels
 
-- **Security Reports**: security@open-cluster-management.io
-- **Code of Conduct Reports**: conduct@open-cluster-management.io
-- **Steering Committee**: steering@open-cluster-management.io
+- **Security Reports**: OCM-security@googlegroups.com
+- **Code of Conduct Reports**: cncf-ocm-maintainers@lists.cncf.io
 
 # Amendments
 
