@@ -406,19 +406,6 @@ Any code of conduct violations should be reported to the org maintainers.
 For violations involving an org maintainer, the accused maintainer will be recused from the investigation process.
 These cases must be escalated to the appropriate CNCF contact, who may intervene as needed.
 
-## Code of Conduct Committee
-
-The Steering Committee appoints a Code of Conduct Committee (CoCC) to handle Code of Conduct violations:
-
-**Responsibilities:**
-- Receive and investigate Code of Conduct violation reports
-- Determine appropriate responses to violations
-- Maintain confidentiality of reports and investigations
-- Provide recommendations to the Steering Committee for serious violations
-
-**Current Code of Conduct Committee Members:**
-- TODO: Add CoCC members with contact information
-
 # Communication Channels
 
 Open Cluster Management maintains several communication channels for different purposes:
