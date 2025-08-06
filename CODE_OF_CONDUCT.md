@@ -10,4 +10,4 @@ We have fun doing it, and we want you to as well. To do this, we want it to be a
 
 We're proud to be a CNCF project, and our community abides by the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/main/code-of-conduct.md).
 
-Should you encounter a violation of this Code of Conduct please report it to the [Open Cluster Management Maintainers private email alias](mailto:cncf-ocm-maintainers@cncf.io) If the CoC violation involves a member of [the Maintainers](https://github.com/open-cluster-management-io/community/blob/main/MAINTAINERS.md), please escalate the report to the CNCF Conduct staff. All reports will be kept confidential.
+Should you encounter a violation of this Code of Conduct please report it to the [Open Cluster Management Maintainers private email alias](mailto:cncf-ocm-maintainers@lists.cncf.io) If the CoC violation involves a member of [the Maintainers](https://github.com/open-cluster-management-io/community/blob/main/MAINTAINERS.md), please escalate the report to the CNCF Conduct staff. All reports will be kept confidential.
