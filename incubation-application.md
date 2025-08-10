@@ -136,7 +136,16 @@ Defined in on [contributor ladder](https://github.com/open-cluster-management-io
 
 All maintainer lifecycle is managed via PRs, discussed in Slack, and reviewed and discussed in project meetings.
 
-Here is an example of a remove maintainer PR: https://github.com/open-cluster-management-io/community/pull/209 
+Some examples of this process can be found below.
+
+- A recent [Slack thread announcing new maintainers](https://kubernetes.slack.com/archives/C01GE7YSUUF/p1753726598660099)
+
+- Example PR's adding and reviewing new maintainers:
+-- https://github.com/open-cluster-management-io/community/pull/210
+-- https://github.com/open-cluster-management-io/community/pull/214
+
+Additionally, we review and adjust maintainer status periodically to ensure currency and accuracy. Here's an example of moving two maintainers to emeritus status reflecting their previous contributions but transparently acknowledging they are no longer active:
+- https://github.com/open-cluster-management-io/community/pull/209
 
 <!-- (Project assertion goes here) --> 
 
