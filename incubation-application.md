@@ -39,7 +39,7 @@ _The project has been adopted by the following organizations in a testing and in
 * Red Hat
 
 Please see our [ADOPTERS](https://github.com/augustrh/ocm/blob/main/ADOPTERS.md) file for full use cases and details
-Additonal non-public adopters are available on request.
+Additional non-public adopters are available on request.
 
 ## Application Process Principles
 
@@ -269,24 +269,13 @@ We maintain a detailed history of [releases](https://open-cluster-management.io/
 
 - [x] **Document project goals and objectives that illustrate the project’s differentiation in the Cloud Native landscape as well as outlines how this project fulfills an outstanding need and/or solves a problem differently. _This can also be satisfied by completing a General Technical Review._**
 
-At its core, Open Cluster Management (OCM) exists to make running, managing, and utilising heterogeneous, multicluster environments simpler. We believe that no one runs just one cluster and making multicluster as easy as possible encourages community growth across all projects, empowering our users and their customers.
-
-We do this via a flexible, extensible, and open model that allows any software project to easily understand how to run in a multicluster way. Our core goal is to “multicluster everything.” To do this we align with, and contribute to, the SIG-Multicluster APIs for multicluster management. But we also have developed, and shared, a number of key concepts and components within OCM that makes it easier and more accessible for any project, large or small, to “do multicluster.” 
-
-Two key components are documented below:
-
-[The Placement API](https://open-cluster-management.io/docs/concepts/content-placement/placement/): The OCM Placement API is a very dynamic and sophisticated scheduler for multicluster environments. It operates on a Hub-Spoke model and is deeply integrated with our Work API, ManifestWork. The Placement API allows an administrator to use a vendor-neutral work selector to easily place resources across a fleet of clusters. Within the API the PlacementDecision resource provides a list of clusters that have been selected. We’ve successfully used this within OCM and are working closely to lead our extended community in the effort for its inclusion in SIG’s API specs.  By standardizing on a single PlacementDecision API, any scheduler can publish its choices and any consumer can subscribe to them, eliminating friction and enabling true "plug and play". For full details of this effort and how OCM is leading please see this [enhancement proposal](https://github.com/kubernetes/enhancements/issues/5313). 
-
-[Add-ons](https://open-cluster-management.io/docs/concepts/add-on-extensibility/addon/): OCM utilises the concept of an add-on to clearly define a framework which allows developers to easily add their software to OCM and make it mlticluster aware. Add-ons are simple to write and are fully documented and maintained to the specifications in the [addon-framework](https://github.com/open-cluster-management-io/addon-framework) repo. Add-ons are used by multiple projects such as Argo, Submariner, Kubevela and more. Add-ons are also used extensively for internal components of OCM so the framework is actively developed and maintained. With add-ons any project can plug-in to OCM with minimal code and, almost instantaneously become multicluster aware.
-
-We are also in the process of creating a goals and objectives page on our website to surface these ideas with even more visibility.
+Please see our [General Technical Review](https://github.com/open-cluster-management-io/community/cncf/GTR.md) for full details.
 
 <!-- (Project assertion goes here) --> 
 
 - [x] **Document what the project does, and why it does it - including viable cloud native use cases. This can also be satisfied by completing a General Technical Review.**
 
-What OCM does is documented on our [website](https://open-cluster-management.io/), with detailed sections on the [key concepts](https://open-cluster-management.io/docs/concepts/) where it is outlined in great detail; however, below we provide some highlights for easy review:
-
+What OCM does is documented in our [General Technical Review](https://github.com/open-cluster-management-io/community/cncf/GTR.md) and on our [website](https://open-cluster-management.io/), with detailed sections on the [key concepts](https://open-cluster-management.io/docs/concepts/) where it is outlined in great detail; however, below we provide some highlights for easy review:
 
 Open Cluster Management is a community-driven project focused on multicluster and multicloud scenarios for Kubernetes apps. We offer both a reference implementation of the API’s put forward by SIG-Multicluster as well as extended capabilities to accentuate them for numerous additional use cases. We utilise open APIs and an easy to use add-on structure to allow projects to gain the benefits of simple, secure, and vendor-neutral multicloud management.
 We do this because we believe that managing multiple clusters should be simple and easy. With the variety of both free and proprietary cloud and on-premises offerings it is important to us to help the community utilise these heterogeneous environments to their fullest potential. We want to ensure users can remain focused on their code and core business. With the growth and popularity of Kubernetes we know that no one can afford to run just one cluster, so we offer them the solution to keep pace and focus on innovation over infrastructure headaches. 
@@ -305,7 +294,7 @@ Our roadmap is maintained and documented on [GitHub](https://github.com/orgs/ope
 
 - [x] **Document overview of project architecture and software design that demonstrates viable cloud native use cases, as part of the project's documentation. _This can also be satisfied by completing a General Technical Review and capturing the output in the project's documentation._**
 
-See the previous sections' dicussion of cloud native use cases and for a deep dive into the components please visit our [Architecture](https://open-cluster-management.io/docs/concepts/architecture/) page. 
+We have a comprehensive [General Technical Review](https://github.com/open-cluster-management-io/community/cncf/GTR.md) and maintain the information in our [project documentation](https://open-cluster-management.io/docs/concepts/).
 
 <!-- (Project assertion goes here) --> 
 
