@@ -5,6 +5,7 @@
     * [Organization Member](#organization-member)
     * [Reviewer](#reviewer)
     * [Maintainer](#maintainer)
+    * [Core Maintainer](#core-maintainer)
 * [Inactivity](#inactivity)
 * [Involuntary Removal](#involuntary-removal-or-demotion)
 * [Stepping Down/Emeritus Process](#stepping-downemeritus-process)
@@ -130,6 +131,39 @@ Process of becoming a maintainer:
 1. Any current Maintainer may nominate a current Reviewer to become a new Maintainer, by opening a PR against the root of the Subproject's primary repository, adding the nominee as an Approver in the OWNERS file.
 2. The nominee will add a comment to the PR testifying that they agree to all requirements of becoming a Maintainer.
 3. A majority of the current Maintainers of that Subproject must then approve the PR.
+
+### Core Maintainer
+Description: Core Maintainers are Maintainers of the Project (core) components with additional responsibilities for the overall stability and strategic direction of Open Cluster Management. They are responsible for maintaining the core foundation components that other projects depend on, and must commit to OCM's stability and compatibility guarantees.
+
+A Core Maintainer must meet the responsibilities and requirements of a Maintainer, plus:
+
+* Responsibilities include:
+    * Maintaining core project components (OCM, API, Clusteradm, Addon Framework, SDK)
+    * Ensuring version compatibility guarantees and migration paths
+    * Making technical decisions on core project changes and implementations
+    * Responding to security compromise reports according to OCM security procedures
+    * Participating in cross-project coordination
+    * Helping define overall project direction and strategy
+    * Mentoring other maintainers and contributors across the project
+* Requirements:
+    * Experience as a Maintainer for at least 6 months
+    * Demonstrated exceptional technical and leadership contributions to core functionality
+    * Deep understanding of OCM architecture and core components
+    * Commitment to OCM's stability and compatibility guarantees
+    * Ability to make decisions for the good of the entire project ecosystem
+    * Can commit to spending at least 20 hours per month working on core project activities
+* Additional privileges:
+    * Participate in core project governance decisions
+    * Help define overall project direction and roadmap
+    * Represent the project in strategic discussions
+    * Vote on core project technical decisions
+    * Mentor and guide the development of other maintainers
+
+Process of becoming a Core Maintainer:
+1. Any current Core Maintainer may nominate a current Maintainer to become a Core Maintainer.
+2. The nomination should include evidence of exceptional contributions to core functionality and leadership within the project.
+3. The nominee will add a comment testifying that they agree to all requirements of becoming a Core Maintainer.
+4. A majority of the current Core Maintainers must approve the nomination.
 
 
 ## Inactivity
