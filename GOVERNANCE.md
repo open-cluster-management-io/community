@@ -5,19 +5,28 @@
 - [Values](#values)
 - [Project Governance](#project-governance)
   - [Project Structure](#project-structure)
+    - [Project (Core)](#project-core)
+    - [Subprojects](#subprojects)
   - [Core Project Governance](#core-project-governance)
-  - [Default Subproject Governance](#default-subproject-governance)
-  - [Adding New Projects](#adding-new-projects)
-  - [Removing Projects](#removing-projects)
+    - [Core Project Maintainers](#core-project-maintainers)
+    - [Becoming a Core Project Maintainer](#becoming-a-core-project-maintainer)
+    - [Removing a Core Project Maintainer](#removing-a-core-project-maintainer)
+    - [Decision Making and Voting](#decision-making-and-voting)
+    - [Adding components to the Core Project](#adding-components-to-the-core-project)
+    - [Removing components from the Core Project](#removing-components-from-the-core-project)
+  - [Subproject Governance](#subproject-governance)
+    - [Adding Subprojects](#adding-subprojects)
+    - [Removing Subprojects](#removing-subprojects)
 - [Contributor Ladder](#contributor-ladder)
-- [Steering Committee](#steering-committee)
-  - [Duties](#duties)
-  - [Members](#members)
-  - [Elections](#elections)
-  - [Decision Making](#decision-making)
 - [Security](#security)
 - [Release Process](#release-process)
 - [Code of Conduct](#code-of-conduct)
+- [Communication Channels](#communication-channels)
+  - [Public Channels](#public-channels)
+  - [Community Meetings](#community-meetings)
+  - [Project-Specific Channels](#project-specific-channels)
+  - [Private Channels](#private-channels)
+- [Amendments](#amendments)
 
 # Values
 
@@ -63,60 +72,108 @@ Subprojects are optional components that run on top of OCM core to support diffe
 **Subproject Governance:**
 - Project maintainers have autonomy over their governance model
 - Each subproject MAY define its own governance in a `GOVERNANCE.md` file within the project directory
-- If no custom governance document exists, the project follows the default governance rules defined in the "Default Subproject Governance" section below
+- If no custom governance document exists, the project follows the default governance rules defined in the "Subproject Governance" section below
 - Release cycles, versioning, and quality standards are determined by project maintainers
 - Project maintainers are responsible for maintenance, security responses, and community management
 
 ## Core Project Governance
 
-All active Maintainers of the Core Project, as defined in the Contributor Ladder, are
-responsible for the technical aspects of the core project. The Core Project Maintainers are responsible
-for the following activities:
+Open Cluster Management Core Project is governed by the [Core Project Maintainers](https://github.com/open-cluster-management-io/community/blob/main/MAINTAINERS.md#the-maintainer-list-of-core-ocmnames-are-in-alphabetical-order), who collectively form the **Maintainer Council**. This council serves as the governing body for both technical and strategic decisions related to the core project.
 
-- Creating and publishing regular, stable releases following OCM release cycles;
-- Maintaining version compatibility guarantees and migration paths;
-- Making technical decisions on core project changes and implementations;
-- Responding to security compromise reports according to OCM security procedures;
-- Ensuring comprehensive testing and code quality standards are maintained;
-- Reviewing and merging pull requests;
-- Maintaining project documentation and technical specifications.
+### Core Project Maintainers
 
-Strategic decisions, governance policies, and cross-project coordination are handled by the Steering Committee as defined below.
+All active Maintainers of the Core Project, as defined in the Contributor Ladder, have write access to the core project repositories and are responsible for:
 
-Should a Core Project Maintainer cease being active in the core project,
-violate the Code Of Conduct, or need to be removed for some other reason, they
-may be removed by a 2/3 majority vote of the other Core Project Maintainers, or a
-majority vote of the Steering Committee.
+**Technical Responsibilities:**
+- Creating and publishing regular, stable releases following OCM release cycles
+- Maintaining version compatibility guarantees and migration paths
+- Making technical decisions on core project changes and implementations
+- Responding to security compromise reports according to OCM security procedures
+- Ensuring comprehensive testing and code quality standards are maintained
+- Reviewing and merging pull requests
+- Maintaining project documentation and technical specifications
 
-## Default Subproject Governance
+**Governance Responsibilities:**
+- Strategic decisions and governance policies for the core project
+- Cross-project coordination between core components
+- Reviewing and deciding on new projects to add to the Core Project
+- Removing projects which have become inactive or no longer align with project goals
+- Administering core project infrastructure, intellectual property, and resources
+- Arbitrating inter-project disagreements and conflicts within the core project
+- Acting on escalated security or code quality issues that affect the core project
 
-Subprojects that do not have their own `GOVERNANCE.md` file follow these default governance rules:
+**Community Responsibilities:**
+- Monthly review of core project contributors for advancement on the Contributor Ladder
+- Resolving issues that individual core components are unable to resolve
+- Representing the core project to CNCF and the broader community
+- Ensuring compliance with the Code of Conduct within the core project
 
-**Project Maintainership:**
-- Each subproject has designated project maintainers who have administrative rights
-- Project maintainers are responsible for defining contribution processes, release schedules, and quality standards
-- Project maintainers may delegate responsibilities to other contributors as they see fit
+The collective team of all Core Project Maintainers is known as the **Maintainer Council**, which is the governing body for the core project. This privilege is granted with the expectation of responsibility: maintainers are people who care about the OCM project and want to help it grow and improve.
 
-**Decision Making:**
-- Project maintainers make final decisions on technical direction, feature acceptance, and releases
-- For controversial decisions, project maintainers should seek input from active contributors
-- Conflicts that cannot be resolved within the project may be escalated to the Steering Committee
+### Becoming a Core Project Maintainer
 
-**Contributor Management:**
-- Project maintainers determine how contributors are onboarded and what permissions they receive
-- Project maintainers are responsible for maintaining a welcoming and inclusive environment
-- All contributors must follow the OCM Code of Conduct
+To become a Core Project Maintainer, candidates must demonstrate:
 
-**Project Governance Participation:**
-- Subprojects participate in overall project governance through the established Steering Committee structure
-- Subproject maintainers can participate in community discussions and provide input on project-wide decisions
-- Major subproject concerns can be escalated to the Steering Committee for consideration
+**Commitment to the project:**
+- Participate in discussions, contributions, code and documentation reviews for 6+ months
+- Perform reviews for 10+ non-trivial pull requests in core project repositories
+- Contribute 5+ non-trivial pull requests to core project repositories and have them merged
+- Demonstrate understanding of OCM's stability and compatibility guarantees
 
-## Adding New Projects
+**Technical and leadership abilities:**
+- Ability to write quality code and/or documentation
+- Ability to collaborate with the team and mentor other contributors
+- Understanding of how the team works (policies, processes for testing and code review, etc)
+- Understanding of the core project's codebase and coding and documentation style
+- Demonstrated commitment to OCM's long-term success and stability
 
-### Adding to Core Project
+A new Core Project Maintainer must be proposed by an existing Core Project Maintainer through a GitHub issue in the [community repository](https://github.com/open-cluster-management-io/community) or during a maintainer meeting. A simple majority vote of existing Core Project Maintainers approves the application. Maintainer nominations will be evaluated without prejudice to employer or demographics.
 
-Adding components to the core project requires Steering Committee approval due to their critical nature and long-term commitments. During the monthly Steering meeting, any project member may recommend components to become part of the Core Project of Open Cluster Management. These components must meet strict requirements:
+### Removing a Core Project Maintainer
+
+Core Project Maintainers may resign at any time if they feel that they will not be able to continue fulfilling their project duties.
+
+Core Project Maintainers may also be removed after being inactive, failure to fulfill their maintainer responsibilities, violating the Code of Conduct, or other reasons. Inactivity is defined as a period of very low or no activity in the core project for 18 months, with no definite schedule to return to full maintainer activity.
+
+A Core Project Maintainer may be removed at any time by a 2/3 vote of the remaining Core Project Maintainers.
+
+Depending on the reason for removal, a Core Project Maintainer may be converted to Emeritus status. Emeritus Maintainers will still be consulted on some project matters, and can be rapidly returned to Maintainer status if their availability changes.
+
+### Decision Making and Voting
+
+The Core Project Maintainer Council follows these decision-making principles for all governance and technical matters:
+
+**Consensus-Driven Approach:**
+- Primary focus is on reaching consensus through discussion and collaboration
+- Multiple revision iterations are common and encouraged
+- Goal is to minimize major objections rather than achieve unanimous agreement
+- Decisions are made through "lazy consensus" where silence is considered agreement
+
+**Voting Protocol:**
+- Formal voting is considered a last resort when consensus cannot be reached
+- Any Core Project Maintainer may call for a formal vote on any matter
+- Most decisions require a simple majority of all Core Project Maintainers to succeed
+- Certain critical decisions require a 2/3 majority vote:
+  - Removing a Core Project Maintainer
+  - Adding or removing components to the Core Project
+  - Modifying this governance document
+  - Major architectural changes that affect compatibility
+
+**Meeting and Communication:**
+- Core Project Maintainers are expected to participate in regular community meetings
+- Decisions may be made asynchronously via GitHub issues or discussions
+- Private meetings may be held for security reports or Code of Conduct violations
+- All current Core Project Maintainers must be invited to such meetings, except for any maintainer who is accused of a CoC violation.
+  + The accused maintainer may not be invited to attend the meeting where the report is discussed, but will be provided with the details of the charge and given an opportunity to respond or offer a defense before any decision is made.
+
+**Community Participation:**
+- Community members are welcome to provide feedback on all decisions
+- Community feedback is considered valuable input, but is non-binding
+- Major decisions should be communicated to the community for comment before implementation
+
+### Adding components to the Core Project
+
+Adding components to the core project requires Core Project Maintainer Council approval due to their critical nature and long-term commitments. Any project member may recommend components to become part of the Core Project of Open Cluster Management through a GitHub issue or during a maintainer meeting. These components must meet strict requirements:
 
 **Technical Requirements:**
 - Have a mission directly aligned with core Kubernetes cluster and multicluster management functionality
@@ -131,7 +188,42 @@ Adding components to the core project requires Steering Committee approval due t
 - Commit to long-term support and maintenance responsibilities
 
 **Process:**
-Before submitting an application to the Steering Committee, the applying component must hold an internal consensus vote of all major contributors to join Open Cluster Management as part of the Core Project. The Steering Committee will then review the application, and decide whether or not to accept it. If accepted, the Committee will assign one person to assist the component in their integration and ensure compliance with core governance requirements.
+Before submitting an application to the Core Project Maintainer Council, the applying component must hold an internal consensus vote of all major contributors to join Open Cluster Management as part of the Core Project. The Maintainer Council will then review the application through discussion and consensus, and decide whether or not to accept it. If accepted, the Council will assign one or more maintainers to assist the component in their integration and ensure compliance with core governance requirements.
+
+### Removing components from the Core Project
+
+In some cases, core project components may become inactive, unmaintainable, or no longer align with the core project's mission. Any Core Project Maintainer may propose removal of a core component on these grounds, and the Core Project Maintainer Council can confirm this with a 2/3 majority vote due to the critical nature of core components.
+
+**Removal Process:**
+- Core Project Maintainer proposes removal through GitHub issue or maintainer meeting
+- Discussion period of at least two weeks for community input
+- 2/3 majority vote of Core Project Maintainer Council required for approval
+- If approved, component may be transitioned to subproject status if maintainers are available
+- Components are moved to archive status
+
+## Subproject Governance
+
+Subprojects that do not have their own `GOVERNANCE.md` file follow these default governance rules:
+
+**Project Maintainership:**
+- Each subproject has designated project maintainers who have administrative rights
+- Project maintainers are responsible for defining contribution processes, release schedules, and quality standards
+- Project maintainers may delegate responsibilities to other contributors as they see fit
+
+**Decision Making:**
+- Project maintainers make final decisions on technical direction, feature acceptance, and releases
+- For controversial decisions, project maintainers should seek input from active contributors
+- Conflicts that cannot be resolved within the project may be escalated to the Core Project Maintainer Council for guidance
+
+**Contributor Management:**
+- Project maintainers determine how contributors are onboarded and what permissions they receive
+- Project maintainers are responsible for maintaining a welcoming and inclusive environment
+- All contributors must follow the OCM Code of Conduct
+
+**Project Governance Participation:**
+- Subprojects participate in overall project governance through community discussions and input
+- Subproject maintainers can participate in community meetings and provide feedback on project-wide decisions
+- Major subproject concerns can be escalated to the Core Project Maintainer Council for consideration
 
 ### Adding Subprojects
 
@@ -144,258 +236,49 @@ Subprojects have a more streamlined acceptance process to encourage ecosystem gr
 - Have designated project maintainers willing to maintain the project
 
 **Process:**
-- Project maintainers may request addition to the OCM ecosystem through a GitHub issue or Steering Committee meeting
-- The Steering Committee will review for basic compatibility and licensing requirements
+- Project maintainers may request addition to the OCM ecosystem through a GitHub issue in the [community repository](https://github.com/open-cluster-management-io/community) or community meeting
+- The Core Project Maintainer Council will review for basic compatibility and licensing requirements
 - Acceptance is generally granted unless there are significant concerns about licensing, security, or conflicts with existing projects
 - Projects may be marked as "Experimental" initially and graduate to full status based on adoption and maturity
 
 **Experimental Status:**
-Promising but incomplete projects may be accepted as Experimental Subprojects. Such projects will be marked as Experimental on the website and in code repositories to inform users. Experimental projects are considered part of the OCM ecosystem with limited governance expectations. The Steering Committee will review Experimental projects at least twice per year to determine if they have matured to full status.
+Promising but incomplete projects may be accepted as Experimental Subprojects. All experimental subprojects are currently housed in the [lab repository](https://github.com/open-cluster-management-io/lab) to facilitate collaborative development and reduce overhead. Once projects mature and demonstrate stability, they will be split out into independent repositories as full subprojects. Experimental projects are considered part of the OCM ecosystem with limited governance expectations. The Core Project Maintainer Council will review Experimental projects at least twice per year to determine if they have matured to full status and are ready for graduation to independent repositories.
 
-## Removing Projects
+### Removing Subprojects
 
-In some cases, projects will become inactive or unmaintainable, or wish to separate
-from Open Cluster Management. Any Steering Committee member may propose removal of a project on
-these grounds, and Steering can confirm this with a majority vote. The CNCF will
-determine which, if any, assets of those subprojects will be removable should a
-project leave OCM.
+In some cases, subprojects will become inactive or unmaintainable, or wish to separate from Open Cluster Management. Any Core Project Maintainer may propose removal of a subproject on these grounds, and the Core Project Maintainer Council can confirm this with a simple majority vote.
 
-Where possible, projects which still have contributors will then be moved to a
-repository in their own namespace. Projects which have ceased all activity are
-moved to an archive namespace.
+**Removal Process:**
+- Core Project Maintainer proposes removal through GitHub issue or community meeting
+- Discussion period for community input
+- Simple majority vote of Core Project Maintainer Council required for approval
+- The CNCF will determine which, if any, assets of those subprojects will be removable should a project leave OCM
+
+**Post-Removal:**
+Where possible, projects which still have contributors will then be moved to a repository in their own namespace. Projects which have ceased all activity are moved to an archive namespace.
 
 # Contributor Ladder
 
-Open Cluster Management follows a contributor ladder that provides clear paths for community members to increase their involvement and responsibility within the project. The complete contributor ladder is defined in the [CONTRIBUTOR_LADDER.md](CONTRIBUTOR_LADDER.md) file.
+Open Cluster Management follows a contributor ladder that provides clear paths for community members to increase their involvement and responsibility within the project.
 
-## Roles Overview
+For detailed information about contributor roles, responsibilities, and advancement processes, please refer to the [CONTRIBUTOR_LADDER.md](CONTRIBUTOR_LADDER.md) file.
 
-### Contributors
-- Anyone who contributes to the project through code, documentation, issue reporting, or community participation
-- No special permissions required
-- Expected to follow the Code of Conduct
-
-### Organization Members
-- Contributors who have made sustained contributions to the project
-- Have triage permissions on repositories
-- Can be assigned to issues and pull requests
-- Eligible to vote in community elections
-
-### Reviewers
-- Organization Members with expertise in specific areas
-- Can review and approve pull requests in their areas of expertise
-- Help mentor new contributors
-- May be specific to individual subprojects
-
-### Maintainers
-- Reviewers with additional responsibilities and permissions
-- Have write access to repositories
-- Can merge pull requests and make releases
-- Participate in subproject governance decisions
-- Expected to be responsive to community needs
-
-### Core Maintainers
-- Maintainers of the Core Project with additional responsibilities
-- Must commit to OCM's stability and compatibility guarantees
-- Participate in cross-project coordination
-- Help define overall project direction
-
-## Advancement Process
-
-Advancement through the contributor ladder is based on sustained contributions and community recognition:
-
-1. **To Organization Member**: Demonstrated sustained contributions over 3+ months
-2. **To Reviewer**: Technical expertise and history of quality reviews
-3. **To Maintainer**: Leadership qualities, deep project knowledge, and community trust
-4. **To Core Maintainer**: Exceptional technical and leadership contributions to core functionality
-
-All advancement decisions are made by existing maintainers of the relevant subproject, with input from the broader community.
-
-# Steering Committee
-
-The overall Open Cluster Management umbrella project is governed by a Steering Committee(SC).
-
-## Duties
-
-The Steering Committee is responsible for the strategic governance of the entire Open Cluster Management project. Key responsibilities include:
-
-**Strategic Direction:**
-- Determining overall project direction and roadmap
-- Setting project-wide policies and standards
-- Coordinating between core project and subprojects
-
-**Project Management:**
-- Reviewing and deciding on new projects to add to Open Cluster Management
-- Removing projects which have become inactive or no longer align with project goals
-- Administering project infrastructure, intellectual property, and resources
-
-**Community Governance:**
-- Monthly review of project contributors for advancement on the Contributor Ladder
-- Arbitrating inter-project disagreements and conflicts
-- Resolving issues that individual projects are unable to resolve
-- Selecting the Code of Conduct Committee and ratifying CoC judgements
-
-**External Relations:**
-- Determining overall direction for advocacy and marketing
-- Issuing statements on behalf of Open Cluster Management and its subprojects
-- Representing the project to CNCF and the broader community
-- Acting on escalated security or code quality issues that affect the entire project
-
-In performance of these duties, the Steering Committee will hold a monthly meeting
-that is open to all contributors. The Committee may hold additional, closed meetings
-in order to discuss non-public issues such as security exploits, CoC enforcement,
-and legal questions.
-
-Steering Committee members are expected to advocate for all of Open Cluster Management, not just
-certain projects or corporate sponsors, comply with and support the Code of
-Conduct, and be professional and compassionate in all of their dealings with
-project participants.
-
-## Members
-
-The Steering Committee is composed of project maintainers and elected community representatives.
-
-### Member Requirements
-
-All Steering Committee members must:
-- Be active contributors to the OCM ecosystem
-- Commit to attending monthly Steering Committee meetings
-- Represent the interests of the entire OCM community, not just their employer or subproject
-- Follow the OCM Code of Conduct and maintain professional conduct
-- Disclose any conflicts of interest
-
-## Elections
-
-Community representatives on the Steering Committee will be elected by the collective Organization Members
-of the OCM project, as defined in the Contributor Ladder. They
-will be elected annually.
-
-Once per year, the Steering Committee will select between two and three Election
-Officers to run the annual election and sets the dates for the election. Election
-Officers should be project Members in good standing, not running for election
-themselves, and represent more than one project employer.
-
-These officers will update the list of eligible Members according to
-project records, send out announcements, and conduct the election. The election
-starts with a call for nominations, which lasts for at least one week, and will
-include a period for project Members to request changes to their voting status.
-Candidates may nominate themselves, or they may be nominated by other members of the community.
-
-The election itself will last for at least one week, and is conducted as a
-preference election online, using a method such as Condorcet or IRV. The
-Election Officers will announce the selected candidates at the next regular
-community meeting.
-
-## Decision Making
-
-The Steering Committee (SC) serves as a decision-making body for both technical and non-technical matters, often responding to requests from project Maintainers and Contributors.
-
-The Steering Committee follows these decision-making principles:
-
-**Consensus-Driven Approach**
-
-- Primary focus is on reaching consensus through discussion.
-- Multiple revision iterations are common and encouraged.
-- Goal is to minimize major objections rather than achieve unanimous agreement.
-
-**Voting Protocol**
-
-- Voting is considered a last resort.
-- Used only when consensus cannot be reached.
-- Recognizes that voting may leave significant concerns unaddressed.
-
-**Procedural Decisions**
-
-- Some decisions can be approved asynchronously via GitHub.
-- Requires approval from 2/3 of SC members.
-- Any SC member can request a meeting for further discussion.
-- When a meeting is called, standard consensus process applies.
-
-**Community Participation**
-
-- Non-SC members are welcome to provide feedback.
-- Community feedback is considered non-binding but valuable.
 
 # Security
 
-## Security Response Team
+Open Cluster Management takes security seriously and maintains comprehensive security policies and procedures.
 
-Open Cluster Management maintains a Security Response Team responsible for coordinating security-related activities:
-
-**Core Responsibilities:**
-- Receive and triage security vulnerability reports
-- Coordinate with maintainers to develop fixes
-- Manage security advisory process
-- Ensure timely communication to users about security issues
-- PLease visit our [SECURITY.md](https://github.com/open-cluster-management-io/community/blob/main/SECURITY.md) page for full details on the process as well as contact details.
-
-
-## Reporting Security Issues
-
-**For Core Project:**
-Security vulnerabilities should be reported privately to the Security Response Team at: security@open-cluster-management.io
-
-**For Subprojects:**
-- If the subproject has defined its own security contact, report to that contact
-- Otherwise, report to the main OCM Security Response Team who will coordinate with project maintainers
-
-## Security Process
-
-1. **Initial Report**: Security issues are reported privately to avoid public disclosure before fixes are available
-2. **Acknowledgment**: The Security Response Team acknowledges receipt within 48 hours
-3. **Assessment**: Team assesses the severity and impact of the reported issue
-4. **Coordination**: Team works with relevant maintainers to develop and test fixes
-5. **Disclosure**: Public disclosure follows responsible disclosure practices, typically after fixes are available
-6. **Post-Incident**: Team conducts post-incident review to improve security processes
-
-## Security Requirements
-
-**For Core Project:**
-- Must follow OCM security guidelines and processes
-- Required to participate in security reviews and assessments
-- Must implement security best practices in code and infrastructure
-- Required to respond to security issues within defined SLAs
-
-**For Subprojects:**
-- Encouraged to follow OCM security guidelines
-- Must report security issues that could affect the broader OCM ecosystem
-- Responsible for their own security practices and incident response
+For detailed information about security reporting, response processes, and requirements, please refer to the [SECURITY.md](SECURITY.md) file.
 
 # Release Process
 
-## Core Project Releases
+Open Cluster Management follows structured release processes for both core project and subprojects to ensure quality and compatibility.
 
-The core project follows coordinated release cycles to ensure compatibility and stability:
+For detailed information about release schedules, requirements, and procedures, please refer to the [RELEASE.md](RELEASE.md) file.
 
-**Release Schedule:**
-- Major releases: Every 6 months (aligned with Kubernetes release cycle)
-- Minor releases: Monthly or as needed for important features
-- Patch releases: As needed for bug fixes and security updates
+# CNCF Resources
 
-**Release Requirements:**
-- All releases must pass comprehensive test suites
-- Breaking changes require migration guides and deprecation notices
-- Security patches receive priority and expedited release process
-- Release notes must document all changes and compatibility impacts
-
-**Version Compatibility:**
-- Core project components maintain API compatibility within major versions
-- Deprecation policy provides at least one major version notice before removal
-- Cross-component compatibility is tested and documented
-
-## Subproject Releases
-
-Subprojects manage their own release cycles:
-
-**Flexibility:**
-- Project maintainers determine release schedules and versioning schemes
-- No requirement to coordinate with core OCM releases
-- Encouraged to document compatibility with OCM versions
-
-**Quality Standards:**
-- Projects are encouraged to follow semantic versioning
-- Should provide clear documentation of breaking changes
-- Recommended to maintain some level of backward compatibility
+Any Maintainer may suggest a request for CNCF resources, either in the [mailing list](cncf-ocm-maintainers@lists.cncf.io), or during a meeting. A simple majority of Maintainers approves the request. The Maintainers may also choose to delegate working with the CNCF to non-Maintainer community members, who will then be added to the [CNCF's Maintainer List](https://github.com/cncf/foundation/blob/main/project-maintainers.csv) for that purpose.
 
 # Code of Conduct
 
@@ -432,13 +315,13 @@ Each subproject may maintain its own communication channels as documented in the
 
 # Amendments
 
-This governance document may be amended by a 2/3 majority vote of the Steering Committee.
+This governance document may be amended by a 2/3 majority vote of the Core Project Maintainer Council.
 
 **Amendment Process:**
 1. Proposed amendments must be circulated to the community for comment at least one week before voting
-2. The Steering Committee will consider community feedback before voting
+2. The Core Project Maintainer Council will consider community feedback before voting
 3. Amendments take effect immediately upon approval unless otherwise specified
 4. All amendments will be documented in the project's governance history
 
 **Emergency Amendments:**
-In cases where immediate action is required for legal, security, or CNCF compliance reasons, amendments may be made with a simple majority vote of available Steering Committee members, with community notification to follow within 48 hours.
+In cases where immediate action is required for legal, security, or CNCF compliance reasons, amendments may be made with a simple majority vote of available Core Project Maintainers, with community notification to follow within 48 hours.
