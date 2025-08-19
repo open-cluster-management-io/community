@@ -72,8 +72,9 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * [clusteradm](https://github.com/open-cluster-management-io/clusteradm)
     * Jian Qiu
     * Jian Zhu
+    * Tyler Gillson
 * [lab](https://github.com/open-cluster-management-io/lab)
-    * TylerGillson
+    * Tyler Gillson
     * Zhao Xue
 
 ### Community and Docs
