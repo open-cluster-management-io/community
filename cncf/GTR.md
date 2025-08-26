@@ -42,6 +42,7 @@
   
   - Entities, e.g. financial institutions, internet companies, with many Kubernetes clusters.
   - Vendors that provide platform engineering services.
+  - Not tied to any specific market segement. More details can be seen in [Adopters][https://github.com/open-cluster-management-io/ocm/blob/main/ADOPTERS.md].
 
 * Please describe any completed end user research and link to any reports.
 
@@ -66,6 +67,7 @@
 
 * Describe how this project integrates with other projects in a production environment.
 
+Some integration examples includes:
   - [ArgoCD](https://github.com/open-cluster-management-io/addon-contrib/tree/main/argocd-agent-addon): OCM integrates
   ArgoCD by deploying an agent addon to managed clusters, enabling automated GitOps-based application synchronization and management.
   - [Kueue](https://github.com/open-cluster-management-io/addon-contrib/tree/main/kueue-addon): OCM integrates Kueue by installing
@@ -75,6 +77,15 @@
   - [Open-Telemetry](https://github.com/open-cluster-management-io/addon-contrib/tree/main/open-telemetry-addon): OCM
   integrates Open-Telemetry by deploying its operator through an addon, allowing centralized observability and telemetry data
   collection across clusters.
+  - [KubeVela](https://kubevela.io/docs/platform-engineers/system-operation/working-with-ocm/) uses OCM to deploy application
+  over multiple clusters.
+  - [KubeStellar](https://docs.kubestellar.io/release-0.28.0/direct/start-from-ocm/) uses OCM as the underlying multicluster
+  management "Inventory and Transport Space".
+  - [ICOS Meta OS](https://www.icos-project.eu/docs/Administration/ICOS%20Agent/Orchestrators/controlplane/) uses OCM as
+  the multicluster management controlplane.
+
+The [Adopeters](https://github.com/open-cluster-management-io/ocm/blob/main/ADOPTERS.md) has full list of projects that has integration
+with
 
 ### Design
 
@@ -187,6 +198,8 @@
 * Describe how the project is installed and initialized, e.g. a minimal install with a few lines of code or does it require more complex integration and configuration?  
 
   The project can be installed in minutes using a command-line tool for a minimal setup, while also offering more configurable installation methods for production environments.
+  The detailed installation doc is [here](https://open-cluster-management.io/docs/getting-started/quick-start/).
+
   A minimal install, which sets up a hub cluster and registers a spoke cluster, is achieved with the clusteradm CLI tool. This provides a "few lines of code" experience:
   Initialize the Hub Cluster: On your designated hub cluster, run:
   ```
@@ -434,3 +447,173 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
   The project follows the API upgrade flow https://github.com/open-cluster-management-io/api/blob/main/docs/development.md#api-upgrade-flow to rollout from alpha to beta.
   Feature gates from alpha to beta follow a standard lifecycle:
   https://open-cluster-management.io/docs/getting-started/administration/featuregates/ 
+
+
+## Day 2 \- Day-to-Day Operations Phase
+
+### Scalability/Reliability
+
+* Describe how the project increases the size or count of existing API objects.
+
+  OCM will generate 1 secret in each ManagedCluster for the agent, and 1 secret for each addon in each ManagedCluster depending
+  on the configuration. 
+
+* Describe how the project defines Service Level Objectives (SLOs) and Service Level Indicators (SLIs).
+
+  OCM defines SLOs and SLIs based on the status of APIs representing the cluster managed, the status of the workload
+  propagated to multiple clusters and the addons running on each cluster.
+
+* Describe any operations that will increase in time covered by existing SLIs/SLOs.
+
+* Describe the increase in resource usage in any components as a result of enabling this project, to include CPU, Memory, Storage, Throughput.
+
+  The resource usage increases when then number of managed cluster increases.
+  - The number of CRs, managedCluster and manifestworks, will increase which will result in the increase of memory and storage
+    usage in kube-apiserver and etcd in the hub cluster.
+  - The number of connection from agent to the kube-apiserver of the hub cluster will increase.
+
+* Describe which conditions enabling / using this project would result in resource exhaustion of some node resources (PIDs, sockets, inodes, etc.)
+
+  If extreme large number of clusters are registered into the hub cluster, or extreme large number of ManifestWorks are created on
+  the hub cluster. It may cause large memory usage in kube-apiserver with too many CRs created and also result in resource exhaustion
+  in etcd.
+
+* Describe the load testing that has been performed on the project and the results.
+
+  OCM developed a performance testing tools https://github.com/open-cluster-management-io/multicluster-controlplane/tree/main/test/performance.
+
+* Describe the recommended limits of users, requests, system resources, etc. and how they were obtained.
+  
+  TBD
+
+* Describe which resilience pattern the project uses and how, including the circuit breaker pattern.
+
+  TBD
+
+### Observability Requirements
+
+* Describe the signals the project is using or producing, including logs, metrics, profiles and traces. Please include supported formats, recommended configurations and data storage.
+
+  The monitoring of the project is described here https://open-cluster-management.io/docs/getting-started/administration/monitoring/
+
+* Describe how the project captures audit logging.
+
+  Audit logging can be obtained from kube-apiserver audit log.
+
+* Describe any dashboards the project uses or implements as well as any dashboard requirements.
+
+  OCM has an experiment dashboard here: https://github.com/open-cluster-management-io/lab/tree/main/dashboard
+
+* Describe how the project surfaces project resource requirements for adopters to monitor cloud and infrastructure costs, e.g. FinOps
+* Which parameters is the project covering to ensure the health of the application/service and its workloads?
+  
+  OCM is using operator to deploy service, and the operator also monitor the healthiness of the service. The status of
+  the operator API, `ClusterManager` and `Klusterlet`, will show the healthiness of the services.
+
+* How can an operator determine if the project is in use by workloads?
+
+  The operator can check in the cluster if the operator API, `ClusterManager` and `Klusterlet`, exists and their status.
+  The operator can also run `clusteradm get hub-info` and `clusteradm get klusterlet-info` to get status of the hub
+  cluster and the managed cluster.
+
+* How can someone using this project know that it is working for their instance?
+
+  The operator API, `ClusterManager` and `Klusterlet`, show the healthiness of the services.
+  User can also run `clusteradm get hub-info` and `clusteradm get klusterlet-info` to get status of the hub
+  cluster and the managed cluster.
+
+* Describe the SLOs (Service Level Objectives) for this project.
+
+TBD
+
+* What are the SLIs (Service Level Indicators) an operator can use to determine the health of the service?
+
+  - percentage of available ManagedClusters.
+  - percentage of successfully applied ManifestWorks
+  - percentage of available ManagedClusterAddons
+
+### Dependencies
+
+* Describe the specific running services the project depends on in the cluster.
+* Describe the project’s dependency lifecycle policy.
+* How does the project incorporate and consider source composition analysis as part of its development and security hygiene? Describe how this source composition analysis (SCA) is tracked.
+* Describe how the project implements changes based on source composition analysis (SCA) and the timescale.
+
+### Troubleshooting
+
+* How does this project recover if a key component or feature becomes unavailable? e.g Kubernetes API server, etcd, database, leader node, etc.
+  
+  The CRs data needs backup, and when key component, e.g. kube-apiserver or etcd becomes unavailable. User can start a
+  new kubernetes controlplane, restore the CRs data and configura klusterlet agent to reconnect to the new controlplane.
+  The steps to handle it is decribed in https://github.com/open-cluster-management-io/ocm/tree/main/solutions/multiplehubs.
+
+* Describe the known failure modes.
+
+  TBD
+
+### Security
+
+* Security Hygiene
+    * How is the project executing access control?
+
+      Open Cluster Management (OCM) employs a multi-layered approach to access control, ensuring secure and granular
+      management of multi-cluster environments. This is primarily achieved through a combination of a double opt-in
+      registration process, Kubernetes Role-Based Access Control (RBAC), and specialized custom resources that streamline
+      permission management across clusters.
+
+      **Hub-Spoke Architecture and Secure Registration**
+
+      At its core, OCM operates on a hub-spoke architecture, where a central hub cluster manages multiple spoke (managed)
+      clusters. The initial and most critical access control measure is the secure registration of these spoke clusters
+      to the hub. This is enforced through a double opt-in mechanism.
+
+      This process requires explicit approval from administrators of both the hub and the spoke clusters. When a spoke
+      cluster attempts to join the hub, a CertificateSigningRequest (CSR) is created on the hub. The hub administrator
+      must approve this CSR, and concurrently, the spoke cluster administrator must apply the necessary configurations
+      to initiate and accept the connection. This mutual agreement prevents unauthorized clusters from being added to
+      the management domain.
+
+      **Role-Based Access Control (RBAC)**
+  
+      OCM extensively leverages Kubernetes' native Role-Based Access Control (RBAC) to define and enforce permissions
+      for users and services operating within the multi-cluster environment. This is implemented through standard Kubernetes
+      RBAC resources like Roles, ClusterRoles, RoleBindings, and ClusterRoleBindings.
+
+      Specific roles are created by OCM to grant varying levels of access to different resources. For instance, there are
+      predefined roles for cluster administration, application deployment, and policy management. Administrators can use
+      these roles to control who can perform actions such as registering new clusters, deploying applications to specific
+      clusters, or viewing cluster statuses.
+
+      **ClusterPermission Custom Resource**
+
+      To simplify the management of RBAC policies across a fleet of clusters, OCM introduces the ClusterPermission custom
+      resource. This powerful feature allows administrators to define RBAC configurations (Roles, ClusterRoles, and their
+      bindings) on the hub cluster and then automatically distribute and enforce them on selected managed clusters.
+      This centralized approach ensures consistent permission settings and reduces the operational overhead of managing
+      RBAC on each cluster individually.
+
+      **ManagedServiceAccount for Service Identity**
+
+      In conjunction with ClusterPermission, OCM utilizes the ManagedServiceAccount custom resource. This facilitates
+      the management of service account identities across the managed clusters. By creating a ManagedServiceAccount on
+      the hub, administrators can ensure that corresponding service accounts are created on the designated spoke clusters,
+      simplifying authentication and authorization for applications and services that span multiple clusters.
+
+      **Grouping and Isolation with ManagedClusterSet**
+
+      OCM provides a mechanism to group managed clusters into logical sets called ManagedClusterSet. This is a key
+      feature for implementing multi-tenancy and isolating access. By binding a ManagedClusterSet to a specific namespace
+      on the hub cluster, administrators can restrict the permissions of users and applications to only the clusters within
+      that set. This ensures that a user or service with access to one set of clusters cannot view or interact with clusters
+      in another set, providing a strong security boundary.
+
+      **Pull-Based Communication Model**
+
+      A fundamental aspect of OCM's security posture is its pull-based communication model. The agent running on the managed
+      clusters, known as the "klusterlet," actively pulls desired state configurations and workloads from the hub cluster.
+      This means the hub cluster does not require direct network access or credentials to the API servers of the managed
+      clusters. This design significantly reduces the attack surface and enhances the overall security of the multi-cluster environment.
+
+* Cloud Native Threat Modeling
+    * How does the project ensure its security reporting and response team is representative of its community diversity (organizational and individual)?
+    * How does the project invite and rotate security reporting team members?
