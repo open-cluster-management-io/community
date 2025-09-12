@@ -50,7 +50,7 @@ N/A
 ### Required
 
 - [x] **Engage with the domain specific TAG(s) to increase awareness through a presentation or completing a General Technical Review.**
-  - This was completed and occurred on 20-JAN-2022 TAG-Runtime meeting, and can be discovered at https://www.youtube.com/watch?v=g6sWygYKuK8
+  - Please see our [General Technical Review](https://github.com/open-cluster-management-io/community/blob/main/cncf/GTR.md) for full details.
 
 <!-- (Project assertion goes here) --> 
 
