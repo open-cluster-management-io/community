@@ -257,6 +257,13 @@ Github: https://github.com/open-cluster-management-io/community/issues/201
 We have a total of [42 contributors](https://openclustermanagement.devstats.cncf.io/d/66/developer-activity-counts-by-companies?orgId=1&var-period_name=Last%20decade&var-metric=contributions&var-repogroup_name=All&var-country_name=All&var-companies=All) to the project since conception and have a total of [28 contributors](https://openclustermanagement.devstats.cncf.io/d/66/developer-activity-counts-by-companies?orgId=1&var-period_name=Last%20year&var-metric=contributions&var-repogroup_name=All&var-country_name=All&var-companies=All) in the last year.
 Over the last year, we have an average of 758 contributions and 30 contributors per month, and an average of 85 PRs merged per month.
 
+OCM has actively participated in KubeCons and other global CNCF events. Including Project Pavilion kiosks at KubeCon North America, China, Japan, Europe, as well as many speaking sessions. Some recent examples include:
+
+- [ArgoCon EU 2025 - Scale GitOps With the Argo CD Agent and Open Cluster Management](https://www.youtube.com/watch?v=trR8OcmizXQ)
+- [KubeCon EU 2025 - How the SIG-Multicluster API Specifications Are Used for Real World](https://www.youtube.com/watch?v=I9GV4N23dvE)
+- [KCD China 2025 - AI-Driven Troubleshooting for Multi-Cluster Environments](https://github.com/cncf/presentations/blob/main/chinese/kcd-beijing/2025-03-15/AI/01-%E5%A4%9A%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E4%B8%AD%20AI%20%E9%A9%B1%E5%8A%A8%E7%9A%84%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%20-Meng%20Yan.pdf)
+- [KCD China 2025 - Unlocking the Power of CEL for Advanced Multi-Cluster Scheduling](https://github.com/cncf/presentations/blob/main/chinese/kcd-beijing/2025-03-15/Cloud%20Native/04-%E9%87%8A%E6%94%BE%20CEL%20%E5%9C%A8%E9%AB%98%E7%BA%A7%E5%A4%9A%E9%9B%86%E7%BE%A4%E8%B0%83%E5%BA%A6%E4%B8%AD%E7%9A%84%E6%BD%9C%E5%8A%9B%20-Qing%20Hao.pdf)
+
 <!-- (Project assertion goes here) --> 
 
 ## Engineering Principles
