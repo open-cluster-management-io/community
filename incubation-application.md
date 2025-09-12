@@ -222,7 +222,7 @@ Detailed and clear steps for contributing and understanding the project can be f
 
 - [x] **Project must have, and document, at least one public communications channel for users and/or contributors.**
 
-Both our [README](https://github.com/open-cluster-management-io/ocm?tab=readme-ov-file#get-connected) and https://open-cluster-management.io/ have links to the community Slack and other communication channels.
+Both our [README](https://github.com/open-cluster-management-io/ocm?tab=readme-ov-file#community) and https://open-cluster-management.io/ have links to the community Slack and other communication channels.
 
 <!-- (Project assertion goes here) --> 
 
