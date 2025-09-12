@@ -108,7 +108,7 @@ The governance document is current and recently updated. We also have a detailed
 
 - [x] **Governance clearly documents [vendor-neutrality](https://contribute.cncf.io/maintainers/community/vendor-neutrality/) of project direction.**
 
-We regularly review the CNCF vendor-neutrality documentation and ensure we match all the requirements. Additionally we align closely and contribute to the [SIG Multicluster APIs](https://multicluster.sigs.k8s.io/) to ensure we always remain vendor neutral and 100% based on community standards.
+We follow the CNCF's vendor-neutrality requirements, and make sure that our project's governance clearly describes how people can become contributors or maintainers based on their community involvement, not their company affiliation. We also make sure that all project communications are community focused and vendor neutral, and open to everyone to participate. Additionally, we align closely and contribute to the [SIG Multicluster APIs](https://multicluster.sigs.k8s.io/) to ensure we always remain vendor neutral and 100% based on community standards.
 
 <!-- (Project assertion goes here) --> 
 
