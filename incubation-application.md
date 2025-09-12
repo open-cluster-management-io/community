@@ -278,13 +278,13 @@ We maintain a detailed history of [releases](https://open-cluster-management.io/
 
 - [x] **Document project goals and objectives that illustrate the project’s differentiation in the Cloud Native landscape as well as outlines how this project fulfills an outstanding need and/or solves a problem differently. _This can also be satisfied by completing a General Technical Review._**
 
-Please see our [General Technical Review](https://github.com/open-cluster-management-io/community/cncf/GTR.md) for full details.
+Please see our [General Technical Review](https://github.com/open-cluster-management-io/community/blob/main/cncf/GTR.md) for full details.
 
 <!-- (Project assertion goes here) --> 
 
 - [x] **Document what the project does, and why it does it - including viable cloud native use cases. This can also be satisfied by completing a General Technical Review.**
 
-What OCM does is documented in our [General Technical Review](https://github.com/open-cluster-management-io/community/cncf/GTR.md) and on our [website](https://open-cluster-management.io/), with detailed sections on the [key concepts](https://open-cluster-management.io/docs/concepts/) where it is outlined in great detail; however, below we provide some highlights for easy review:
+What OCM does is documented in our [General Technical Review](https://github.com/open-cluster-management-io/community/blob/main/cncf/GTR.md) and on our [website](https://open-cluster-management.io/), with detailed sections on the [key concepts](https://open-cluster-management.io/docs/concepts/) where it is outlined in great detail; however, below we provide some highlights for easy review:
 
 Open Cluster Management is a community-driven project focused on multicluster and multicloud scenarios for Kubernetes apps. We offer both a reference implementation of the API’s put forward by SIG-Multicluster as well as extended capabilities to accentuate them for numerous additional use cases. We utilise open APIs and an easy to use add-on structure to allow projects to gain the benefits of simple, secure, and vendor-neutral multicloud management.
 We do this because we believe that managing multiple clusters should be simple and easy. With the variety of both free and proprietary cloud and on-premises offerings it is important to us to help the community utilise these heterogeneous environments to their fullest potential. We want to ensure users can remain focused on their code and core business. With the growth and popularity of Kubernetes we know that no one can afford to run just one cluster, so we offer them the solution to keep pace and focus on innovation over infrastructure headaches. 
@@ -303,7 +303,7 @@ Our roadmap is maintained and documented on [GitHub](https://github.com/orgs/ope
 
 - [x] **Document overview of project architecture and software design that demonstrates viable cloud native use cases, as part of the project's documentation. _This can also be satisfied by completing a General Technical Review and capturing the output in the project's documentation._**
 
-We have a comprehensive [General Technical Review](https://github.com/open-cluster-management-io/community/cncf/GTR.md) and maintain the information in our [project documentation](https://open-cluster-management.io/docs/concepts/).
+We have a comprehensive [General Technical Review](https://github.com/open-cluster-management-io/community/blob/main/cncf/GTR.md) and maintain the information in our [project documentation](https://open-cluster-management.io/docs/concepts/).
 
 <!-- (Project assertion goes here) --> 
 
