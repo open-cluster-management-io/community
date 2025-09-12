@@ -229,6 +229,7 @@ Both our [README](https://github.com/open-cluster-management-io/ocm?tab=readme-o
 - [x] **List and document all project communication channels, including subprojects (mail list/slack/etc.).  List any non-public communications channels and what their special purpose is.**
 
 Project communication is done through Slack, GitHub, a weekly community meeting and office hours.
+More information can be found on the [Community](https://open-cluster-management.io/community/) page of the website.
 
 <!-- (Project assertion goes here) --> 
 
@@ -239,7 +240,7 @@ We offer two meetings to accomodate timezones and interests. Both are available 
   - **Open Cluster Management Lunch Chat**: A bi-weekly (fortnightly) North America/Europe-centric timezone meeting. This is a more free-flowing "office hours" type of call. All questions, issues, interests, and comments are welcome!
   - **Open Cluster Management community meeting**: A bi-weekly (fortnightly) and aligned closer to an APAC timezone with a more formal discussion format with presentations.
 
-As with any global community working with timezones all meetings are flexible and may vary in content and frequency. Recordings of meetings and additonal community communication can be found on the [Community](https://open-cluster-management.io/community/) page of the website.
+As with any global community working with timezones all meetings are flexible and may vary in content and frequency. Recordings of meetings and additional community communication can be found on the [Community](https://open-cluster-management.io/community/) page of the website.
 
 <!-- (Project assertion goes here) --> 
 
