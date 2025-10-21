@@ -7,6 +7,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 
 
 * Amrutha Harikumar (Guidewire Software, @amrcoder)
+* August Simonelli (Red Hat, @augustrh)
 * Ben Perry (Saturn Cloud, @bhperry)
 * Chunlin Yang (Red Hat, @clyang82)
 * David Eads (Red Hat, @deads2k)
@@ -79,6 +80,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 
 ### Community and Docs
 * [community](https://github.com/open-cluster-management-io/community)
+    * August Simonelli
     * Jian Qiu
     * Joshua Packer
     * Mike Ng
