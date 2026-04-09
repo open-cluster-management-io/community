@@ -20,6 +20,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * Joshua Packer (Red Hat, @jnpacker)
 * Le Yang (Red Hat, @elgnay)
 * LongLong Cao (Red Hat, @morvencao)
+* Meng Yan (Red Hat, @yanmxa)
 * Mike Ng (Red Hat, @mikeshng)
 * Qing Hao (Red Hat, @haoqing0110)
 * Ramesh Krishna (Guidewire Software, @ramekris3163)
@@ -84,6 +85,8 @@ We enthusiastically welcome contributors to create addons, whether within or out
     * Jian Qiu
     * Joshua Packer
     * Mike Ng
+* [addon-contrib](https://github.com/open-cluster-management-io/addon-contrib)
+    * Meng Yan
 * [website](https://github.com/open-cluster-management-io/open-cluster-management-io.github.io)
     * Jian Qiu
     * Mike Ng
