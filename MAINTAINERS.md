@@ -38,6 +38,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
     * [api](https://github.com/open-cluster-management-io/api)
         * Jian Qiu
         * David Eads
+        * Mike Ng
     * `registration`
         * Gaurav Jaswal
         * Le Yang
