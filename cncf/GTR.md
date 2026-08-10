@@ -408,22 +408,51 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **How can this project be enabled or disabled in a live cluster? Please describe any downtime required of the control plane or nodes.**
 
-  Open Cluster Management is a foundational component, and it cannot be enabled/disabled in a live cluster.
-  Users can only cut off the connection between hub and spoke by following this doc
-  https://open-cluster-management.io/docs/concepts/cluster-inventory/managedcluster/#cluster-removal. No downtime required.
+  OCM is installed as a control plane component, not toggled as a feature within an existing workload. It is enabled by installing ClusterManager on the hub via `clusteradm init` or Helm, and on each spoke by installing Klusterlet via `clusteradm join` or Helm — no control plane or node downtime is required.
+
+  To fully uninstall OCM from the hub, detach all managed clusters first, then run `clusteradm clean`. Full steps: [Uninstall OCM from the control plane](https://open-cluster-management.io/docs/getting-started/installation/start-the-control-plane/#uninstalling-ocm-from-the-control-plane).
+
+  The connection between hub and spoke can also be cut independently without full uninstall: [Cluster removal](https://open-cluster-management.io/docs/concepts/cluster-inventory/managedcluster/#cluster-removal).
+
+  When a `ManagedCluster` resource is deleted, spoke resources deployed via ManifestWork are cleaned up automatically. This is controlled by the `ResourceCleanup` feature gate — disabled by default in v0.16 and earlier, enabled by default from v0.17+. Without it, resources may be orphaned on the spoke. See [Resource cleanup when the managed cluster is deleted](https://open-cluster-management.io/docs/getting-started/installation/register-a-cluster/#resource-cleanup-when-the-managed-cluster-is-deleted).
+
+  A spoke can also lose hub connectivity temporarily — for example, in an air-gapped or intermittently connected environment — without requiring uninstallation. OCM's pull-based architecture is designed for this: the Klusterlet continues running existing workloads on the spoke, the hub marks the cluster status `Unknown` when the heartbeat lease expires, and the Klusterlet automatically reconnects and re-syncs when the hub becomes reachable again.
 
 * **Describe how enabling the project changes any default behavior of the cluster or running workloads.**
 
-  OCM does not change any behavior of the cluster or running workloads
+  Enabling OCM doesn't touch your existing workloads — it simply adds ClusterManager on the hub and Klusterlet on each spoke, each running in their own dedicated namespaces (`open-cluster-management` and `open-cluster-management-agent`).
+
+  **ManifestWork is the unit of work — and it's a clean design.** Rather than syncing arbitrary resources from the hub, OCM's work-agent watches exclusively for `ManifestWork` objects in each cluster's dedicated namespace and applies the wrapped resources to the spoke. Anything else you put in that namespace — a raw ConfigMap, a Deployment — stays put on the hub. Nothing leaks accidentally to a spoke.
+
+  The cluster namespace itself is worth calling out: each managed cluster gets its own namespace on the hub (named after the cluster), and it's a first-class control plane space. It holds the `ManifestWork` objects (the actual work to dispatch), `Lease` objects (Klusterlet heartbeat), connection `Secret`s, and addon resources (`ManagedClusterAddOn`, addon agent secrets). This namespace carries the primary per-cluster coordination state — intentional, auditable, and scoped. Registration and certificate rotation additionally use the cluster-scoped CSR API and the cluster-scoped `ManagedCluster` resource, so the namespace is not the only hub-spoke interface.
+
+  See: [ManifestWork](https://open-cluster-management.io/docs/concepts/manifestwork/) and [Deploy Kubernetes resources to managed clusters](https://open-cluster-management.io/docs/scenarios/deploy-kubernetes-resources/).
 
 * **Describe how the project tests enablement and disablement.**
 
-  OCM does not support being enabled/disabled in a live cluster.
+  The project maintains integration tests for both ClusterManager and Klusterlet lifecycle covering enablement and disablement:
+
+  - **ClusterManager** (`test/integration/operator/clustermanager_test.go`): Tests verify that hub components (deployments, RBAC, webhooks) are created on `ClusterManager` creation and removed on deletion.
+  - **Klusterlet** (`test/integration/operator/klusterlet_test.go`): Tests verify that spoke components (registration and work agents, CRDs, RBAC) are created on `Klusterlet` creation and cleaned up on deletion.
+  - **ManagedCluster deletion** (`test/integration/registration/managedcluster_deletion_test.go`): Tests verify that when a `ManagedCluster` is deleted, all associated `ManagedClusterAddOns` and `ManifestWorks` are removed in priority order before the cluster namespace is released.
+
+  **[MORE INPUT NEEDED]** Two specific behaviors need explicit confirmation:
+  1. When `ClusterManager` is removed, are all managed cluster namespaces on the hub cleaned up as part of that operation, or does that require prior explicit cluster detachment?
+  2. When `Klusterlet` is removed from the spoke independently of deleting the `ManagedCluster` resource on the hub, are ManifestWork-deployed resources on the spoke cleaned up or orphaned?
 
 * **How does the project clean up any resources created, including CRDs?**
 
-  Open Cluster Management cleans up resources when the managed cluster is deleted.
-  The process is described at: https://open-cluster-management.io/docs/getting-started/installation/register-a-cluster/#detach-the-cluster-from-hub
+  **CRDs:** `clusteradm clean` deletes the `ClusterManager` CR (triggering the operator to remove all hub components — deployments, webhooks, RBAC) and, with `--purge-operator`, removes the `clustermanagers.operator.open-cluster-management.io` CRD and the operator deployment itself.
+
+  **[MORE INPUT NEEDED]** Whether the OCM API CRDs (`managedclusters`, `manifestworks`, `placements`, etc.) are removed as part of `clusteradm clean` or require explicit manual deletion should be confirmed and documented explicitly.
+
+  **ManifestWork cleanup — the project provides tooling to prevent orphaning.** `clusteradm unjoin` (the recommended spoke removal command) proactively checks for `AppliedManifestWork` resources on the spoke before proceeding. If any exist, it names them, warns that they must be cleaned up manually because uninstalling the Klusterlet would leave that work unmanaged, and exits without removing anything ([`pkg/cmd/unjoin/exec.go`](https://github.com/open-cluster-management-io/clusteradm/blob/main/pkg/cmd/unjoin/exec.go)).
+
+  This guard exists because bypassing it has cascading consequences: if the `Klusterlet` CR is deleted directly, the work-agent is gone and the `manifest-work-cleanup` finalizer on ManifestWork can never be cleared — causing ManagedCluster deletion on the hub to block indefinitely. Recovery requires manual finalizer removal and namespace cleanup, which is impractical at scale.
+
+  The recommended sequence is therefore: delete `ManagedCluster` from the hub first, then run `clusteradm unjoin` on the spoke. Hub-side deletion is what removes the `ManagedClusterAddOn` and `ManifestWork` resources in the cluster namespace, which in turn allows the spoke's `AppliedManifestWork` resources to drain — so the `unjoin` guard above passes. Running `unjoin` first simply stops with the warning while work is still applied.
+
+  This depends on the `ResourceCleanup` feature gate described earlier: enabled by default from v0.17+, disabled by default in v0.16 and earlier. On versions where it is not enabled, hub-side deletion will not clean the spoke automatically and the `AppliedManifestWork` resources must be removed manually before `unjoin` will proceed. Direct `Klusterlet` CR deletion is technically possible but not advised and unsupported at scale.
 
 ### Rollout, Upgrade and Rollback Planning
 
@@ -442,16 +471,23 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **Describe any specific metrics that should inform a rollback.**
 
-  Clusteradm provides commands to check the cluster info after upgrade and rollback: https://open-cluster-management.io/docs/getting-started/administration/upgrading/
-  The ManagedCluster status will also reflect whether a cluster is available or not after the upgrade.
+  The primary rollback signal is the `ManagedCluster` status condition (`ManagedClusterConditionAvailable`): a cluster transitioning to `Available=False` or `Unknown` after an upgrade indicates a connectivity or agent failure requiring attention. `clusteradm` commands can also be used to verify cluster state post-upgrade: see [Upgrading your OCM environment](https://open-cluster-management.io/docs/getting-started/administration/upgrading/).
+
+  This condition is a signal, not a rollback policy in itself. `Unknown` is set when the Klusterlet heartbeat lease expires, which also occurs during transient network loss and during the agent's own restart in a rolling upgrade — so a single cluster flipping state is expected and is not grounds for rollback. OCM does not prescribe a threshold; adopters should set their own based on fleet size, allowing the condition to persist beyond the lease duration and correlating across a meaningful proportion of the fleet, and confirming hub component health before concluding the upgrade itself is at fault.
+
+  OCM is not opinionated about monitoring tooling — it exposes cluster health through its Kubernetes API conditions and leaves operators free to connect their preferred observability stack. The project documents one such integration using OpenTelemetry Collector and Prometheus: see [Monitoring OCM](https://open-cluster-management.io/docs/getting-started/administration/monitoring/). Distribution providers may expose additional named metrics on top of this foundation.
 
 * **Explain how upgrades and rollbacks were tested and how the upgrade-\>downgrade-\>upgrade path was tested.**
 
-  Users should run `clusteradm upgrade` on the test environment before upgrading in the production environment.
+  OCM components are upgraded with `clusteradm upgrade clustermanager --bundle-version=<version>` on the hub and `clusteradm upgrade klusterlet --bundle-version=<version>` on each spoke. Done manually, the upgrade is two steps per cluster and both are required: update the image on the operator Deployment, then update the image fields on the custom resource itself — `registrationImagePullSpec`, `workImagePullSpec` and `placementImagePullSpec` on `ClusterManager`, and `registrationImagePullSpec` and `workImagePullSpec` on `Klusterlet`. Updating the operator Deployment alone leaves the operands at the old version and produces mixed-version components. See [Upgrading your OCM environment](https://open-cluster-management.io/docs/getting-started/administration/upgrading/). The project follows semver conventions, and the API upgrade flow is documented at [API upgrade flow](https://github.com/open-cluster-management-io/api/blob/main/docs/development.md#api-upgrade-flow). Downgrade is supported by specifying a lower version target with the same tooling.
+
+  Resources already applied to spokes keep running across a hub upgrade — the pull-based model means a spoke does not depend on hub availability to keep serving what it has already received. What does pause for the duration is anything that requires the hub: new or changed `ManifestWork` is not delivered, reconciliation of existing work against hub state does not occur, and status does not report back until the agent can reach the hub again.
+
+  **[MORE INPUT NEEDED]** The upgrade→downgrade→upgrade path is not explicitly covered in the current CI workflows (which test at a single version). Maintainers should confirm whether this path is tested manually, in a separate pipeline, or whether API compatibility guarantees make it implicitly safe — and document the answer explicitly.
 
 * **Explain how the project informs users of deprecations and removals of features and APIs.**
 
-  We will log issues in the community for features/API deprecations and removal plans, add them to the roadmap, and inform users in community meetings and Slack channels as well.
+  Deprecations and removals are communicated via community issues, the roadmap, community meetings, and Slack. API version tags (`v1alpha1`, `v1alpha2`, `v1beta1`) are also updated as APIs progress through their lifecycle, giving users a versioned signal of stability and planned changes. The full API upgrade flow is documented at [API upgrade flow](https://github.com/open-cluster-management-io/api/blob/main/docs/development.md#api-upgrade-flow).
 
 * **Explain how the project permits utilization of alpha and beta capabilities as part of a rollout.**
 
@@ -466,13 +502,22 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **Describe how the project increases the size or count of existing API objects.**
 
-  OCM will generate 1 secret in each ManagedCluster for the agent, and 1 secret for each addon in each ManagedCluster depending
-  on the configuration. 
+  For each managed cluster, OCM creates: one `ManagedCluster` resource on the hub, one dedicated namespace (named after the cluster), one Secret for the agent connection, and one additional Secret per enabled addon. These are the baseline hub-side objects per cluster and scale linearly with fleet size.
+
+  ManifestWork objects are created in the cluster namespace to dispatch workloads to the spoke. There is no requirement for a single ManifestWork per workload — operators and addons may create multiple ManifestWorks per cluster (the recommended limit is 100 per managed cluster to avoid hub resource exhaustion). Each ManifestWork wraps one or more Kubernetes manifests, keeping the total object count on the hub bounded relative to the number of distinct workloads being dispatched.
+
+  Addons follow the same pattern: each enabled addon may create ManifestWork objects in the cluster namespace to push addon agent resources to the spoke. The `ManagedClusterAddOn` resource on the hub tracks addon status per cluster.
 
 * **Describe how the project defines Service Level Objectives (SLOs) and Service Level Indicators (SLIs).**
 
-  OCM defines SLOs and SLIs based on the status of APIs representing the cluster managed, the status of the workload
-  propagated to multiple clusters and the addons running on each cluster.
+  OCM's SLIs are expressed as Kubernetes status conditions:
+  - Cluster availability: `ManagedClusterConditionAvailable` on each `ManagedCluster` resource
+  - ManifestWork success: ManifestWork `.status.conditions` (`Applied`, `Available`)
+  - Addon availability: `ManagedClusterAddOn` status conditions per cluster
+
+  For Prometheus-based monitoring, standard Kubernetes API server metrics can be filtered to OCM resource types. This is documented in the [Monitoring OCM](https://open-cluster-management.io/docs/getting-started/administration/monitoring/) guide alongside a Grafana dashboard for visualisation.
+
+  **[MORE INPUT NEEDED]** Maintainers should confirm whether named application-level Prometheus metrics (e.g. for cluster availability or ManifestWork success rates) are planned for upstream OCM, and document them here once available.
 
 * **Describe any operations that will increase in time covered by existing SLIs/SLOs.**
 
@@ -484,10 +529,11 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **Describe the increase in resource usage in any components as a result of enabling this project, to include CPU, Memory, Storage, Throughput.**
 
-  The resource usage increases when then number of managed cluster increases.
-  - The number of CRs, managedCluster and manifestworks, will increase which will result in the increase of memory and storage
-    usage in kube-apiserver and etcd in the hub cluster.
-  - The number of connection from agent to the kube-apiserver of the hub cluster will increase.
+  The hub baseline requirements are already documented (4 CPU cores, 8GB RAM minimum for production). Incremental cost per additional managed cluster is driven by: one persistent Klusterlet connection to the hub API server, one `ManagedCluster` resource and namespace, heartbeat lease renewals, and ManifestWork reconciliation traffic — scaling with ManifestWork and addon count rather than being a fixed per-cluster figure.
+
+  The project provides a performance testing framework for measuring actual resource usage against a given workload profile: [multicluster-controlplane performance tests](https://github.com/open-cluster-management-io/multicluster-controlplane/tree/main/test/performance).
+
+  **[MORE INPUT NEEDED]** Maintainers should publish measured per-cluster incremental CPU/memory numbers from the performance framework — even as a range at 100, 500, and 1000 clusters — so operators can right-size their hub before deployment.
 
 * **Describe which conditions enabling / using this project would result in resource exhaustion of some node resources (PIDs, sockets, inodes, etc.)**
 
@@ -497,7 +543,9 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **Describe the load testing that has been performed on the project and the results.**
 
-  OCM developed a performance testing tools https://github.com/open-cluster-management-io/multicluster-controlplane/tree/main/test/performance.
+  Load testing was performed using the [multicluster-controlplane performance testing framework](https://github.com/open-cluster-management-io/multicluster-controlplane/tree/main/test/performance). The default test configuration creates 1000 simulated clusters and generates 5 `ManifestWork` resources per cluster — `ManifestWork` being the primary unit of load, as it drives hub storage, reconciliation, and spoke delivery. The framework supports customisable ManifestWork payloads to simulate real-world workload sizes.
+
+  Test results are recorded in a [shared results document](https://docs.google.com/spreadsheets/d/11GcIXAxPpQlu35VWnN5sVtqrtkM0EYm3rqj8sTz2Pvs/edit#gid=0). The derived limits (3000 clusters per hub, 100 ManifestWorks per cluster) are based on these results combined with production adopter feedback.
 
 * **Describe the recommended limits of users, requests, system resources, etc. and how they were obtained.**
 
@@ -507,6 +555,8 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
   - Hub cluster minimum requirements: 4 CPU cores, 8GB RAM for production workloads
   - Network bandwidth: 10Mbps minimum per 100 managed clusters for status reporting
   These limits were obtained through the performance testing framework and real-world production deployments by adopters.
+
+  Network usage beyond the baseline status reporting figure is highly conditional on workload — ManifestWork size, reconciliation frequency, addon activity, and certificate rotation traffic all contribute. For real-world sizing, community consultation is recommended: adopters with production deployments have shared operational experience in the community channels and [ADOPTERS.md](https://github.com/open-cluster-management-io/ocm/blob/main/ADOPTERS.md).
 
 * **Describe which resilience pattern the project uses and how, including the circuit breaker pattern.**
 
@@ -523,7 +573,12 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **Describe the signals the project is using or producing, including logs, metrics, profiles and traces. Please include supported formats, recommended configurations and data storage.**
 
-  The monitoring of the project is described here https://open-cluster-management.io/docs/getting-started/administration/monitoring/
+  OCM produces the following signals:
+  - **Logs**: Standard Kubernetes controller logs from ClusterManager and Klusterlet components, accessible via `kubectl logs` or any log aggregation stack.
+  - **Metrics**: OCM does not ship a metrics endpoint of its own. Hub and spoke health is observable through Kubernetes API server metrics filtered to OCM resource types, and through `ManagedCluster`, `ManifestWork`, and `ManagedClusterAddOn` status conditions.
+  - **Traces**: Not currently supported natively.
+
+  For richer observability, OCM documents an optional integration using the OpenTelemetry Collector addon combined with Prometheus and Grafana: [Monitoring OCM](https://open-cluster-management.io/docs/getting-started/administration/monitoring/). This addon-based approach is optional — operators can observe OCM health without it using the Kubernetes status conditions and API server metrics described above.
 
 * **Describe how the project captures audit logging.**
 
@@ -535,22 +590,27 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **Describe how the project surfaces project resource requirements for adopters to monitor cloud and infrastructure costs, e.g. FinOps**
 
-  OCM provides resource visibility through:
-  - Prometheus metrics for hub and spoke cluster resource consumption (CPU, memory, storage)
-  - ManagedCluster status includes resource capacity and utilization information
-  - Addon resource usage is tracked via addon status and metrics
-  - Integration with cluster monitoring stacks to provide cost attribution per managed cluster
+  `ManagedCluster` status surfaces capacity information from each spoke (CPU, memory, and storage as reported by the spoke's node resources), giving operators a fleet-wide inventory view of cluster capacity through the Kubernetes API.
+
+  OCM does not currently provide native FinOps or cost attribution tooling. For resource consumption monitoring, operators bring their own stack — OCM's addon framework makes it straightforward to deploy monitoring agents consistently across the fleet via ManifestWork.
 
 * **Which parameters is the project covering to ensure the health of the application/service and its workloads?**
   
-  OCM is using operator to deploy service, and the operator also monitor the healthiness of the service. The status of
-  the operator API, `ClusterManager` and `Klusterlet`, will show the healthiness of the services.
+  OCM tracks the delivery of work to managed clusters via `ManifestWork` status conditions (`Applied`, `Available`) — these confirm that resources were successfully applied to the spoke, not that the resulting workloads are operationally healthy.
+
+  Application and service health beyond delivery is outside OCM's core scope by design. OCM's role is to ensure the right resources reach the right clusters; verifying that a Deployment's pods are running, healthy, and serving traffic is the responsibility of the application layer or a dedicated monitoring addon.
+
+  The addon framework is the natural extension point here: addons such as the policy addon can verify compliance and operational state of workloads across the fleet, with status rolled up via `ManagedClusterAddOn` conditions on the hub. Operators building on OCM typically layer application observability through addons deployed consistently across the fleet via ManifestWork.
 
 * **How can an operator determine if the project is in use by workloads?**
 
-  The operator can check in the cluster if the operator API, `ClusterManager` and `Klusterlet`, exists and their status.
-  The operator can also run `clusteradm get hub-info` and `clusteradm get klusterlet-info` to get status of the hub
-  cluster and the managed cluster.
+  An operator can determine OCM is in active use by inspecting:
+  - **`ManifestWork`** resources in cluster namespaces on the hub — each represents active work being dispatched to a spoke
+  - **`AppliedManifestWork`** resources on the spoke — each confirms work has been applied and is being reconciled
+  - **`ClusterManagementAddOn`** on the hub — lists which addons are enabled fleet-wide
+  - **`ManagedClusterAddOn`** per cluster namespace — shows which addons are active per cluster
+
+  Resources applied to spokes via ManifestWork carry an `ownerReference` back to their `AppliedManifestWork`. The work agent deliberately uses `ownerReference` rather than `controllerReference` to support shared ownership — multiple ManifestWorks can co-own a resource on the spoke. To audit OCM-managed resources on a spoke independently of the hub, match the full reference rather than the kind alone — `apiVersion: work.open-cluster-management.io/v1` together with a `uid` that resolves to an `AppliedManifestWork` actually present on that cluster. Matching on `kind: AppliedManifestWork` by itself can pick up unrelated resources or stale references left by a deleted owner. See [ManifestWork](https://open-cluster-management.io/docs/concepts/manifestwork/).
 
 * **How can someone using this project know that it is working for their instance?**
 
@@ -569,20 +629,19 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **What are the SLIs (Service Level Indicators) an operator can use to determine the health of the service?**
 
-  - percentage of available ManagedClusters.
-  - percentage of successfully applied ManifestWorks
-  - percentage of available ManagedClusterAddons
+  OCM's health indicators are expressed as Kubernetes status conditions on `ClusterManager`, `Klusterlet`, `ManagedCluster`, `ManifestWork`, and `ManagedClusterAddOn` resources rather than named Prometheus metrics. These are queryable via the Kubernetes API or via `clusteradm get hub-info` and `clusteradm get klusterlet-info`.
+
+  For Prometheus-based alerting, operators can filter standard Kubernetes API server metrics to OCM resource types as described in [Monitoring OCM](https://open-cluster-management.io/docs/getting-started/administration/monitoring/). Where richer, named metrics are needed — for example, fleet-wide availability gauges or ManifestWork success rates — OCM's addon framework makes it straightforward to deploy a monitoring agent consistently across the fleet and roll up custom metrics to a central stack. The project's extensibility means operators are not limited to what ships in the core.
 
 ### Dependencies
 
 * **Describe the specific running services the project depends on in the cluster.**
 
-  OCM depends on the following cluster services:
-  - **Kubernetes API Server**: Core dependency for all OCM operations and CRD storage
-  - **etcd**: Stores all OCM custom resources and cluster state information
-  - **kube-controller-manager**: Required for leader election and resource management
-  - **CoreDNS/kube-dns**: Name resolution for inter-component communication
-  - **kubelet**: Manages OCM pods on cluster nodes
+  The standard Kubernetes control plane dependencies (API server, etcd, kube-controller-manager) are prerequisites for any OCM deployment and are not unique to the project.
+
+  The **CSR (Certificate Signing Request) API** is worth calling out explicitly as a non-obvious critical dependency. It is used during Klusterlet registration for the spoke agent to obtain a signed client certificate, and throughout operation for automatic certificate rotation. If the CSR API is unavailable or disabled, Klusterlet registration fails and certificate rotation is blocked.
+
+  **[MORE INPUT NEEDED]** Are there other non-obvious service dependencies — for example, specific admission webhooks, feature gates that must be enabled, or minimum API group availability — that operators should know about before deploying OCM?
 
 * **Describe the project's dependency lifecycle policy.**
 
@@ -596,24 +655,28 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
 * **How does the project incorporate and consider source composition analysis as part of its development and security hygiene? Describe how this source composition analysis (SCA) is tracked.**
 
-  OCM incorporates SCA through multiple automated tools and processes:
-  - **GitHub Security Scanning**: Enabled for vulnerability detection in source code and dependencies
-  - **Dependabot**: Automatically tracks dependency vulnerabilities and creates PRs for security updates
-  - **SBOM Generation**: Creates Software Bill of Materials for all container images using SPDX format
-  - **License Scanning**: Ensures all dependencies comply with project license requirements
-  - **Supply Chain Security**: Uses Cosign and Sigstore for image signing and attestation
-  - **Trivy Integration**: Scans container images for known CVEs in CI/CD pipeline
-  - **Tracking**: SCA results are monitored via GitHub Security Dashboard and dependency update PRs
+  Dependabot and GitHub Security scanning automatically generate PRs for dependency and vulnerability updates. These PRs go through the same CI pipeline as any contribution — unit tests, integration tests, e2e — and require maintainer approval before merging. Critical security vulnerabilities trigger an immediate patch release; routine updates are batched monthly.
+
+  SBOM generation is part of the release pipeline: every container image published to `quay.io/open-cluster-management` receives an SPDX-format SBOM generated via `anchore/sbom-action` and attested using GitHub's native artifact attestation (`actions/attest-sbom`). The GitHub Security Dashboard is used to track open findings.
+
+  **[MORE INPUT NEEDED]** The existing GTR text references Cosign/Sigstore image signing — this was not confirmed in the release workflows. Maintainers should confirm whether Cosign signing is actively enforced or whether GitHub's native attestation is the current mechanism, and update the Day 0 security section accordingly.
 
 * **Describe how the project implements changes based on source composition analysis (SCA) and the timescale.**
 
-  N/A
+  Dependabot PRs for security patches are reviewed and merged on an ongoing basis; critical vulnerabilities trigger an immediate patch release. Routine dependency updates are batched monthly. All changes require CI validation and maintainer approval before merging.
 
 ### Troubleshooting
 
 * **How does this project recover if a key component or feature becomes unavailable? e.g Kubernetes API server, etcd, database, leader node, etc.**
-  
-  CR data should be backed up. When a key component such as kube-apiserver or etcd becomes unavailable, users can start a new Kubernetes control plane, restore the CR data, and configure the klusterlet agent to reconnect to the new control plane. Steps are described at https://github.com/open-cluster-management-io/ocm/tree/main/solutions/multiplehubs.
+
+  When the hub becomes unavailable, managed clusters continue running the resources already applied to them — there is no immediate workload impact, because OCM's pull-based model means spokes do not depend on hub availability to keep serving existing work. Management itself is interrupted for the duration: no new or changed `ManifestWork` is delivered, existing work is not reconciled against hub state, and cluster and work status stop reporting until the agent can reach a hub again.
+
+  OCM offers two distinct paths back, and they address different failure modes:
+
+  - **Planned high availability** — the [MultipleHubs feature](https://github.com/open-cluster-management-io/ocm/tree/main/solutions/multiplehubs) lets a Klusterlet hold bootstrap kubeconfigs for several hubs configured in advance and move between them, including failing over when the current hub sets `hubAcceptsClient: false` or becomes unreachable, and failing back afterwards. This is an availability mechanism for hubs provisioned ahead of time; it is not a restore procedure.
+  - **Hub rebuild** — where no standby hub exists, recovery means restoring the hub's OCM custom resource data (`ManagedCluster`, `ManifestWork`, `Placement`, addon resources) onto a new control plane and having Klusterlet agents re-establish registration against it. Beyond the CRs themselves this also involves the OCM CRDs, cluster namespaces, and the bootstrap credentials and certificates agents use to re-register.
+
+  **[MORE INPUT NEEDED]** The project does not currently publish a tested end-to-end backup-and-restore runbook for the single-hub rebuild case, covering the full set of state above and verified agent reconnection against the restored hub. Maintainers should confirm whether such a procedure exists, and document and test it if not — enterprise adopters will expect one.
 
 * **Describe the known failure modes.**
 
