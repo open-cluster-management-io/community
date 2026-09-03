@@ -18,6 +18,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * Jian Qiu (Red Hat, @qiujian16)
 * Jian Zhu (Red Hat, @zhujian7)
 * Joshua Packer (Red Hat, @jnpacker)
+* Kahiro Okina (Craftsman Software, Inc., @kahirokunn)
 * Le Yang (Red Hat, @elgnay)
 * LongLong Cao (Red Hat, @morvencao)
 * Meng Yan (Red Hat, @yanmxa)
@@ -69,6 +70,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
     * Le Yang
     * Zhiwei Yin
     * Jian Zhu
+    * Kahiro Okina
 * [sdk-go](https://github.com/open-cluster-management-io/sdk-go)
     * Jian Qiu
     * David Eads
