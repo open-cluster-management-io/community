@@ -235,21 +235,21 @@
 
   * **Install cluster manager**
 
-    ```bash
-    helm install cluster-manager  --version <version> ocm/cluster-manager --namespace=open-cluster-management --create-namespace
-    ```
+  ```bash
+  helm install cluster-manager  --version <version> ocm/cluster-manager --namespace=open-cluster-management --create-namespace
+  ```
 
   * **Install klusterlet**
 
-    ```bash
-    helm install klusterlet --version <version> ocm/klusterlet \
-    --set klusterlet.clusterName=<cluster name> \
-    --set-file bootstrapHubKubeConfig=<the bootstrap kubeconfig file of hub cluster> \
-    --namespace=open-cluster-management \
-    --create-namespace
-   ```
+  ```bash
+  helm install klusterlet --version <version> ocm/klusterlet \
+  --set klusterlet.clusterName=<cluster name> \
+  --set-file bootstrapHubKubeConfig=<the bootstrap kubeconfig file of hub cluster> \
+  --namespace=open-cluster-management \
+  --create-namespace
+  ```
 
-  OCM includes an [addon framework](https://github.com/open-cluster-management-io/addon-framework) that provides a consistent way to activate built-in addons and develop new ones. Addons are opt-in — none are active by default — keeping the install lightweight and reducing the attack surface.
+  OCM includes an [addon framework](https://github.com/open-cluster-management-io/addon-framework) that provides a consistent way to activate built-in addons and develop new ones. Addons are opt- in — none are active by default — keeping the install lightweight and reducing the attack surface.
 
   A set of first-party addons is installable via `clusteradm install hub-addon --names <addon>`, including `argocd`, `argocd-agent`, and `governance-policy-framework`. These are maintained as sub-projects under the `open-cluster-management-io` GitHub organization, each with their own release cadence and maintainer list, and follow the same contributor ladder and governance model as the core project. Community addons are available at https://github.com/open-cluster-management-io/addon-contrib.
 
