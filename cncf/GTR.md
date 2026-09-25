@@ -391,8 +391,8 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
       - Secure Source Code: We enforce DCO sign-offs on all commits and use protected branches with mandatory PR reviews from official maintainers in our GitHub organization.
       - Secure Builds: Our build pipelines run in isolated, ephemeral environments via GitHub Actions. All build and release processes are defined as code within the repository, ensuring they are transparent and auditable.
       - Secure Artifacts:
-        - Digital Signatures: All official OCM container images are signed using Cosign and the Sigstore project. This allows users to verify that the images they deploy were created by our official build pipeline and have not been tampered with.
-        - Software Bill of Materials (SBOM): We generate a SPDX-formatted SBOM for every container image we release. This SBOM is attached to the container image as a signed Cosign attestation, providing a verifiable inventory of all software components and their dependencies.
+        - Digital Signatures and Attestations: Release artifacts are signed via Sigstore using GitHub's OIDC-based attestation framework (keyless signing through Fulcio, with entries recorded in the Rekor transparency log). Helm charts additionally carry SLSA build provenance (`actions/attest-build-provenance`). Attestations can be verified with `gh attestation verify` or any Sigstore-compatible client, including `cosign verify-attestation`, allowing users to confirm that the artifacts they deploy were produced by our official build pipeline and have not been tampered with.
+        - Software Bill of Materials (SBOM): We generate a SPDX-formatted SBOM for every container image we release (`anchore/sbom-action`) and attach it to the image as a signed in-toto attestation (`actions/attest-sbom`), pushed to the registry alongside the image. This provides a verifiable inventory of all software components and their dependencies.
 
       All official container images are uploaded to https://quay.io/organization/open-cluster-management with security scanning enabled.
       All charts are uploaded to https://artifacthub.io/packages/search?org=open-cluster-management&sort=relevance&page=1, which provides the community with a trusted, versioned, and verifiable source to deploy the OCM components,
@@ -657,9 +657,9 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
   Dependabot and GitHub Security scanning automatically generate PRs for dependency and vulnerability updates. These PRs go through the same CI pipeline as any contribution — unit tests, integration tests, e2e — and require maintainer approval before merging. Critical security vulnerabilities trigger an immediate patch release; routine updates are batched monthly.
 
-  SBOM generation is part of the release pipeline: every container image published to `quay.io/open-cluster-management` receives an SPDX-format SBOM generated via `anchore/sbom-action` and attested using GitHub's native artifact attestation (`actions/attest-sbom`). The GitHub Security Dashboard is used to track open findings.
+  SBOM generation is part of the release pipeline: every container image published to `quay.io/open-cluster-management` receives an SPDX-format SBOM generated via `anchore/sbom-action` and attested using GitHub's native artifact attestation (`actions/attest-sbom`), which signs keylessly through Sigstore and records the entry in the Rekor transparency log. The GitHub Security Dashboard is used to track open findings.
 
-  **[MORE INPUT NEEDED]** The existing GTR text references Cosign/Sigstore image signing — this was not confirmed in the release workflows. Maintainers should confirm whether Cosign signing is actively enforced or whether GitHub's native attestation is the current mechanism, and update the Day 0 security section accordingly.
+  Note that this attestation is the current signing mechanism for released images; the project does not presently publish a standalone detached image signature alongside each image.
 
 * **Describe how the project implements changes based on source composition analysis (SCA) and the timescale.**
 
