@@ -1,4 +1,4 @@
-# General Technical Review - Open Cluster Management / Sandbox
+# General Technical Review - Open Cluster Management / Incubation
 
 - **Project:** Open Cluster Management
 - **Project Version:** v1.0.0
