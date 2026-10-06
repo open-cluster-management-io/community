@@ -436,15 +436,21 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
   - **Klusterlet** (`test/integration/operator/klusterlet_test.go`): Tests verify that spoke components (registration and work agents, CRDs, RBAC) are created on `Klusterlet` creation and cleaned up on deletion.
   - **ManagedCluster deletion** (`test/integration/registration/managedcluster_deletion_test.go`): Tests verify that when a `ManagedCluster` is deleted, all associated `ManagedClusterAddOns` and `ManifestWorks` are removed in priority order before the cluster namespace is released.
 
-  **[MORE INPUT NEEDED]** Two specific behaviors need explicit confirmation:
-  1. When `ClusterManager` is removed, are all managed cluster namespaces on the hub cleaned up as part of that operation, or does that require prior explicit cluster detachment?
-  2. When `Klusterlet` is removed from the spoke independently of deleting the `ManagedCluster` resource on the hub, are ManifestWork-deployed resources on the spoke cleaned up or orphaned?
+  Two disablement behaviours are worth stating explicitly, because neither matches the common expectation that removing the operator removes everything it touched.
+
+  **Removing `ClusterManager` does not reclaim the hub's cluster namespaces.** `clusteradm clean` refuses to proceed while a managed cluster is still attached, so the normal path is to detach first — though note the guard tests for `ManagedClusterConditionAvailable` being `True`, so a cluster that is already unreachable does not block the operation ([`pkg/cmd/clean/exec.go`](https://github.com/open-cluster-management-io/clusteradm/blob/main/pkg/cmd/clean/exec.go)). Deleting the `ClusterManager` CR removes the hub components and the CRDs described in the next answer, but the per-cluster namespaces themselves are deliberately left behind: the project does not delete a cluster namespace when its `ManagedCluster` is deleted, since operators and addons may keep their own resources there. Reclaiming them is an explicit operator step.
+
+  **Removing a `Klusterlet` directly leaves applied workloads to Kubernetes garbage collection.** The operator's cleanup controller removes the `AppliedManifestWork` finalizer for every `AppliedManifestWork` whose `spec.agentID` matches the Klusterlet being deleted, then removes the spoke-side static resources and CRDs. Resources the work-agent applied carry an owner reference to the cluster-scoped `AppliedManifestWork`, unless the originating `ManifestWork` set `deleteOption.propagationPolicy` to `Orphan` or `SelectivelyOrphan`, which strips that reference at apply time. Resources under the default policy are therefore reclaimed by ordinary garbage collection once the `AppliedManifestWork` objects are gone, and resources explicitly marked orphan outlive the agent. If the managed cluster cannot be reached at all, the controller records an eviction timestamp and completes Klusterlet removal five minutes later without touching the spoke — the expected case being a cluster that has already been destroyed.
+
+  This is the reason `clusteradm unjoin` is the recommended removal path rather than deleting the `Klusterlet` CR, as described in the next answer.
 
 * **How does the project clean up any resources created, including CRDs?**
 
-  **CRDs:** `clusteradm clean` deletes the `ClusterManager` CR (triggering the operator to remove all hub components — deployments, webhooks, RBAC) and, with `--purge-operator`, removes the `clustermanagers.operator.open-cluster-management.io` CRD and the operator deployment itself.
+  **CRDs:** `clusteradm clean` deletes the `ClusterManager` CR (triggering the operator to remove all hub components — deployments, webhooks, RBAC) and, with `--purge-operator`, removes the `clustermanagers.operator.open-cluster-management.io` CRD, the operator deployment, its cluster role, role binding and service account, and the `open-cluster-management` namespace.
 
-  **[MORE INPUT NEEDED]** Whether the OCM API CRDs (`managedclusters`, `manifestworks`, `placements`, etc.) are removed as part of `clusteradm clean` or require explicit manual deletion should be confirmed and documented explicitly.
+  The OCM API CRDs are removed as well, and automatically — not by `clusteradm` itself, but by the operator reconciling the `ClusterManager` deletion. Four are wiped first and in a fixed order, `managedclusteraddons` → `manifestworks` → `managedclusters` → `manifestworkreplicasets`, so that addon-generated ManifestWorks drain before the ManifestWork CRD itself goes; the remaining hub CRDs (`clustermanagementaddons`, `managedclustersets`, `managedclustersetbindings`, `placements`, `placementdecisions`, `addondeploymentconfigs`, `addontemplates`, `addonplacementscores`) follow. Adopters who need the CRDs and their custom resources to survive a `ClusterManager` deletion can run the operator with `--skip-remove-crds`, which defaults to `false`.
+
+  Two CRDs are deliberately never removed: the `multicluster.x-k8s.io` `clusterprofiles` and `placementdecisions` CRDs, which belong to SIG Multicluster APIs and may be in use by other projects on the same cluster.
 
   **ManifestWork cleanup — the project provides tooling to prevent orphaning.** `clusteradm unjoin` (the recommended spoke removal command) proactively checks for `AppliedManifestWork` resources on the spoke before proceeding. If any exist, it names them, warns that they must be cleaned up manually because uninstalling the Klusterlet would leave that work unmanaged, and exits without removing anything ([`pkg/cmd/unjoin/exec.go`](https://github.com/open-cluster-management-io/clusteradm/blob/main/pkg/cmd/unjoin/exec.go)).
 
@@ -483,7 +489,7 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
   Resources already applied to spokes keep running across a hub upgrade — the pull-based model means a spoke does not depend on hub availability to keep serving what it has already received. What does pause for the duration is anything that requires the hub: new or changed `ManifestWork` is not delivered, reconciliation of existing work against hub state does not occur, and status does not report back until the agent can reach the hub again.
 
-  **[MORE INPUT NEEDED]** The upgrade→downgrade→upgrade path is not explicitly covered in the current CI workflows (which test at a single version). Maintainers should confirm whether this path is tested manually, in a separate pipeline, or whether API compatibility guarantees make it implicitly safe — and document the answer explicitly.
+  The upgrade→downgrade→upgrade sequence is not currently exercised as a distinct scenario in CI: the end-to-end suites run against a single version, and version skew is handled through the API conventions above rather than through a dedicated test. Adding explicit coverage for the round-trip path is tracked in [open-cluster-management-io/ocm#1732](https://github.com/open-cluster-management-io/ocm/issues/1732).
 
 * **Explain how the project informs users of deprecations and removals of features and APIs.**
 
@@ -517,7 +523,7 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
   For Prometheus-based monitoring, standard Kubernetes API server metrics can be filtered to OCM resource types. This is documented in the [Monitoring OCM](https://open-cluster-management.io/docs/getting-started/administration/monitoring/) guide alongside a Grafana dashboard for visualisation.
 
-  **[MORE INPUT NEEDED]** Maintainers should confirm whether named application-level Prometheus metrics (e.g. for cluster availability or ManifestWork success rates) are planned for upstream OCM, and document them here once available.
+  Upstream OCM does not export named application-level Prometheus metrics — there is no built-in fleet availability gauge or ManifestWork success-rate counter. The status conditions above are the supported interface, and adopters wanting metric-shaped signals derive them from the Kubernetes API or roll them up across the fleet with an addon. First-class metrics are tracked in [open-cluster-management-io/ocm#1733](https://github.com/open-cluster-management-io/ocm/issues/1733).
 
 * **Describe any operations that will increase in time covered by existing SLIs/SLOs.**
 
@@ -533,7 +539,7 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
   The project provides a performance testing framework for measuring actual resource usage against a given workload profile: [multicluster-controlplane performance tests](https://github.com/open-cluster-management-io/multicluster-controlplane/tree/main/test/performance).
 
-  **[MORE INPUT NEEDED]** Maintainers should publish measured per-cluster incremental CPU/memory numbers from the performance framework — even as a range at 100, 500, and 1000 clusters — so operators can right-size their hub before deployment.
+  The project does not yet publish measured per-cluster incremental CPU and memory figures from that framework. Hub sizing guidance today is the documented baseline above combined with the scale limits below, which adopters apply against their own ManifestWork and addon profile. Publishing measured figures at representative fleet sizes is tracked in [open-cluster-management-io/ocm#1734](https://github.com/open-cluster-management-io/ocm/issues/1734).
 
 * **Describe which conditions enabling / using this project would result in resource exhaustion of some node resources (PIDs, sockets, inodes, etc.)**
 
@@ -641,7 +647,12 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
   The **CSR (Certificate Signing Request) API** is worth calling out explicitly as a non-obvious critical dependency of the default registration path. Registration is pluggable: the Klusterlet's `registrationDriver.authType` accepts `csr` (the default), `awsirsa`, or `grpc`. Under the default `csr` driver the spoke agent obtains a signed client certificate through the CSR API at registration and relies on it for automatic certificate rotation thereafter, so if the CSR API is unavailable or disabled, registration fails and rotation is blocked. Adopters on platforms where CSR-based signing is not available — EKS being the common case — can instead use the `awsirsa` driver, which registers via AWS IAM roles for service accounts, or the `grpc` driver. See [`RegistrationDriver`](https://github.com/open-cluster-management-io/api/blob/main/operator/v1/types_klusterlet.go).
 
-  **[MORE INPUT NEEDED]** Are there other non-obvious service dependencies — for example, specific admission webhooks, feature gates that must be enabled, or minimum API group availability — that operators should know about before deploying OCM?
+  Two further dependencies are worth knowing about before deploying:
+
+  - **Webhook reachability on the hub.** The cluster-manager deploys validating and mutating webhooks and relies on a CA bundle produced by the operator's certificate rotation controller. The hub's API server must be able to reach those webhook services; where it cannot — private or network-restricted control planes being the usual case — CRDs do not reach `Established` and the install stalls rather than failing outright.
+  - **`storageversionmigrations.migration.k8s.io`, optional.** Where the Kubernetes StorageVersionMigration API is present, the operator uses it to migrate stored API versions across upgrades. Its absence is detected at runtime and surfaced as a condition on `ClusterManager` rather than treated as a failure, so the dependency is soft — but on clusters without it, storage version migration becomes the adopter's responsibility.
+
+  Feature gates are covered under Rollout, Upgrade and Rollback Planning above and in the [feature gates documentation](https://open-cluster-management.io/docs/getting-started/administration/featuregates/).
 
 * **Describe the project's dependency lifecycle policy.**
 
@@ -676,7 +687,7 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
   - **Planned high availability** — the [MultipleHubs feature](https://github.com/open-cluster-management-io/ocm/tree/main/solutions/multiplehubs) lets a Klusterlet hold bootstrap kubeconfigs for several hubs configured in advance and move between them, including failing over when the current hub sets `hubAcceptsClient: false` or becomes unreachable, and failing back afterwards. This is an availability mechanism for hubs provisioned ahead of time; it is not a restore procedure.
   - **Hub rebuild** — where no standby hub exists, recovery means restoring the hub's OCM custom resource data (`ManagedCluster`, `ManifestWork`, `Placement`, addon resources) onto a new control plane and having Klusterlet agents re-establish registration against it. Beyond the CRs themselves this also involves the OCM CRDs, cluster namespaces, and the bootstrap credentials and certificates agents use to re-register.
 
-  **[MORE INPUT NEEDED]** The project does not currently publish a tested end-to-end backup-and-restore runbook for the single-hub rebuild case, covering the full set of state above and verified agent reconnection against the restored hub. Maintainers should confirm whether such a procedure exists, and document and test it if not — enterprise adopters will expect one.
+  The project does not publish a tested end-to-end backup-and-restore runbook for this single-hub rebuild case — one covering the full set of state above and verifying that agents re-register against the restored hub. Adopters who need a recovery guarantee today should run MultipleHubs with a standby hub, or build and test the procedure against their own backup tooling. Producing and testing a documented runbook is tracked in [open-cluster-management-io/ocm#1735](https://github.com/open-cluster-management-io/ocm/issues/1735).
 
 * **Describe the known failure modes.**
 
