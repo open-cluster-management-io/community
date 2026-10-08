@@ -649,7 +649,7 @@ Self-assessment: https://github.com/open-cluster-management-io/ocm/blob/main/SEL
 
   Two further dependencies are worth knowing about before deploying:
 
-  - **Webhook reachability on the hub.** The cluster-manager deploys validating and mutating webhooks and relies on a CA bundle produced by the operator's certificate rotation controller. The hub's API server must be able to reach those webhook services; where it cannot — private or network-restricted control planes being the usual case — CRDs do not reach `Established` and the install stalls rather than failing outright.
+  - **Webhook reachability on the hub.** The cluster-manager deploys validating and mutating admission webhooks and relies on a CA bundle produced by the operator's certificate rotation controller. The hub's API server must reach these services for matching requests. If it cannot, matching `CREATE` and `UPDATE` requests for `managedclusters`, `managedclustersetbindings`, and `manifestworks` can fail because their webhook configurations use `failurePolicy: Fail`. This does not prevent OCM CRDs from reaching `Established` or stall their installation.
   - **`storageversionmigrations.migration.k8s.io`, optional.** Where the Kubernetes StorageVersionMigration API is present, the operator uses it to migrate stored API versions across upgrades. Its absence is detected at runtime and surfaced as a condition on `ClusterManager` rather than treated as a failure, so the dependency is soft — but on clusters without it, storage version migration becomes the adopter's responsibility.
 
   Feature gates are covered under Rollout, Upgrade and Rollback Planning above and in the [feature gates documentation](https://open-cluster-management.io/docs/getting-started/administration/featuregates/).
