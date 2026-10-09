@@ -23,7 +23,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * LongLong Cao (Red Hat, @morvencao)
 * Meng Yan (Red Hat, @yanmxa)
 * Mike Ng (Red Hat, @mikeshng)
-* Qing Hao (Red Hat, @haoqing0110)
+* Qing Hao (ZTE, @haoqing0110)
 * Ramesh Krishna (Guidewire Software, @ramekris3163)
 * Suvaansh Kumar (Guidewire Software, @suvaanshkumar)
 * Tamal Saha (AppsCode, @tamalsaha)
