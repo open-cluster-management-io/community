@@ -40,6 +40,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
         * Jian Qiu
         * David Eads
         * Mike Ng
+        * Kahiro Okina
     * `registration`
         * Gaurav Jaswal
         * Le Yang
