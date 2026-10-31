@@ -10,6 +10,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * August Simonelli (Red Hat, @augustrh)
 * Ben Perry (Saturn Cloud, @bhperry)
 * Chunlin Yang (Red Hat, @clyang82)
+* Dale Haiducek (Red Hat, @dhaiducek)
 * David Eads (Red Hat, @deads2k)
 * Dong Beiqing (eBay, @dongbeiqing)
 * Gaurav Jaswal (Guidewire Software, @jaswalkiranavtar)
@@ -27,6 +28,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * Ramesh Krishna (Guidewire Software, @ramekris3163)
 * Suvaansh Kumar (Guidewire Software, @suvaanshkumar)
 * Tamal Saha (AppsCode, @tamalsaha)
+* Tesshu Flower (Red Hat, @tesshuflower)
 * Tyler Gillson (Spectro Cloud, @TylerGillson)
 * Wei Liu (Red Hat, @skeeey)
 * Zhao Xue (Red Hat, @xuezhaojun)
@@ -75,7 +77,9 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * [sdk-go](https://github.com/open-cluster-management-io/sdk-go)
     * Jian Qiu
     * David Eads
+    * Tesshu Flower
 * [clusteradm](https://github.com/open-cluster-management-io/clusteradm)
+    * Dale Haiducek
     * Jian Qiu
     * Jian Zhu
     * Tyler Gillson
