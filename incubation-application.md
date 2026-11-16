@@ -1,4 +1,4 @@
-WORK IN PROGRESS | WORK IN PROGRESS | WORK IN PROGRESS
+Open Cluster Management moved to the CNCF Incubating maturity level on November 4, 2026. See the [CNCF level-change record](https://github.com/cncf/toc/issues/2360). This document is retained as the historical incubation application; assertions below describe the project at the time of application.
 
 # Review Project Moving Level Evaluation
 - [x] I have reviewed the TOC's [moving level readiness triage guide](https://github.com/cncf/toc/blob/main/operations/dd-toc-guide.md#initial-triageevaluation-prior-to-assignment), ensured the criteria for my project are met before opening this issue, and understand that unmet criteria will result in the project's application being closed.
