@@ -4,7 +4,7 @@
 
 ![OCM Logo](assets/ocm-logo.png)
 
-[![CNCF Status](https://img.shields.io/badge/CNCF-Sandbox%20Project-blue)](https://www.cncf.io/projects/)
+[![CNCF Status](https://img.shields.io/badge/CNCF-Incubating%20Project-blue)](https://www.cncf.io/projects/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Release](https://img.shields.io/badge/release-v1.0.0-green.svg)](https://github.com/open-cluster-management-io/ocm/releases)
 [![Slack](https://img.shields.io/badge/slack-%23open--cluster--mgmt-brightgreen.svg?logo=slack)](https://kubernetes.slack.com/channels/open-cluster-mgmt)
@@ -19,7 +19,7 @@
 
 Welcome to the **Open Cluster Management (OCM)** community!
 
-Open Cluster Management is a **CNCF Sandbox project** focused on multicluster and multicloud scenarios for Kubernetes applications. We provide open APIs that are evolving for cluster registration, work distribution, dynamic placement of policies and workloads, and much more.
+Open Cluster Management is a **CNCF Incubating project** focused on multicluster and multicloud scenarios for Kubernetes applications. We provide open APIs that are evolving for cluster registration, work distribution, dynamic placement of policies and workloads, and much more.
 
 ## Community
 
