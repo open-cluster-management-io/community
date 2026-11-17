@@ -22,7 +22,7 @@ We enthusiastically welcome contributors to create addons, whether within or out
 * Kahiro Okina (Craftsman Software, Inc., @kahirokunn)
 * Le Yang (Red Hat, @elgnay)
 * LongLong Cao (Red Hat, @morvencao)
-* Meng Yan (Red Hat, @yanmxa)
+* Meng Yan (HSBC, @yanmxa)
 * Mike Ng (Red Hat, @mikeshng)
 * Qing Hao (ZTE, @haoqing0110)
 * Ramesh Krishna (Guidewire Software, @ramekris3163)
