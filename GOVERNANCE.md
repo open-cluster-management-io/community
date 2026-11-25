@@ -298,7 +298,7 @@ Open Cluster Management maintains several communication channels for different p
 - **Mailing List**: [OCM Mailing List at Google Groups](https://groups.google.com/g/open-cluster-management)
 
 ## Community Meetings
-We offer two meetings to accomodate timezones and interests. Both are available on the [OCM Calendar](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com) and **anyone is welcome to join them both**!
+We offer two meetings to accomodate timezones and interests. Both are available on the [OCM Calendar](https://zoom-lfx.platform.linuxfoundation.org/meetings/openclustermanagement?view=list) and **anyone is welcome to join them both**!
   - **Open Cluster Management Lunch Chat**: A bi-weekly (fortnightly) North America/Europe-centric timezone meeting. This is a more free-flowing "office hours" type of call. All questions, issues, interests, and comments are welcome!
   - **Open Cluster Management community meeting**: A bi-weekly (fortnightly) and aligned closer to an APAC timezone with a more formal discussion format with presentations.
 

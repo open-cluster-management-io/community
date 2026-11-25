@@ -16,7 +16,7 @@ Post your messages or questions at [open-cluster-management](https://groups.goog
 
 ## Community meetings
 
-Join our weekly [community meetings and office hours](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com) and talk to us directly.
+Join our weekly [community meetings and office hours](https://zoom-lfx.platform.linuxfoundation.org/meetings/openclustermanagement?view=list) and talk to us directly.
 
 ## WeChat
 
