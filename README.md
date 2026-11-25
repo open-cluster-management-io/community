@@ -34,7 +34,7 @@ Open Cluster Management is a **CNCF Incubating project** focused on multicluster
 
 ### Community Meetings
 
-**[Meeting Calendar](https://calendar.google.com/calendar/u/0/embed?src=openclustermanagement@gmail.com)**  
+**[Meeting Calendar](https://zoom-lfx.platform.linuxfoundation.org/meetings/openclustermanagement?view=list)**  
 **[Meeting Agenda & Notes](https://docs.google.com/document/d/1CPXPOEybBwFbJx9F03QytSzsFQImQxeEtm8UjhqYPNg)**
 
 ## End Users
